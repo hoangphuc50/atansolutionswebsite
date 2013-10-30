@@ -11,6 +11,12 @@ AtanSolutionsWebsite::Application.routes.draw do
     resources :categories
     resources :category_languages
   end
+  root :to => 'home#index'
+  get '/about_us' => 'home#about_us'
+  get '/services' => 'home#services'
+  get '/news' => 'home#news'
+  get '/projects' => 'home#projects'
+  get '/contact' => 'home#contact'
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 

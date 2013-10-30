@@ -1,7 +1,16 @@
 AtanSolutionsWebsite::Application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-
+  #root to: 'admin/users#index'
+  # Admin routes
+  #match '/admin' => 'admin/dashboard#index', :as => :admin_dashboard
+  namespace :admin do
+    root to: 'users#index'
+    resources :users
+    resources :languages
+    resources :categories
+    resources :category_languages
+  end
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 

@@ -1,0 +1,23 @@
+- if @category_language.errors.any?
+  #error_explanation
+    %h2
+      = pluralize(@category_language.errors.count, 'error')
+      prohibited this user from being saved:
+    %ul
+      - @category_language.errors.full_messages.each do |msg|
+        %li= msg
+%fieldset
+  / Set class to "column-left" or "column-right" on fieldsets to divide the form into columns
+  %p
+    %label
+    = f.label :category
+    = f.select :category_id, Category.order('name ASC').all.collect {|c| [c.name, c.id]}, :class => 'language_filter_select'
+
+  %p
+    %label
+    = f.label :language
+    = f.select :language_id, Language.order('name ASC').all.collect {|c| [c.name, c.id]}, :class => 'language_filter_select'
+  %p
+    %label
+    = f.label :title
+    = f.text_field :title, :class => 'text-input large-input'

@@ -1,0 +1,82 @@
+%section.page-title
+  .title.pattern-default
+    %h1 News
+    %span.subtitle
+      See the Latest News from Our Company
+/ content wrapper start
+#content-container
+  .content-wrapper.clearfix
+    / container_12 start
+    .container_12
+      / blog posts container start
+      %ul.grid_8.content-sidebar-right
+        / blog post start
+        %li.blog-post.clearfix{id: ""}
+          %section.post-title-container
+            %a{href: "news_detail.htm"}
+              %h3 This is post with imagepost with imagepost with imagepost with imagepost with image
+          %article.post-body
+            .post-category
+              %a.category-standard{href: "news_detail.htm"}
+            %p Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo …
+            .btn
+              %a{href: "news_detail.htm"} Read more
+        / blog post end
+        %li.divider
+        / blog post start
+        %li.blog-post.clearfix{id: ""}
+          %section.post-title-container
+            %a{href: "news_detail.htm"}
+              %h3 This is post with imagepost with imagepost with imagepost with imagepost with image
+          %article.post-body
+            .post-category
+              %a.category-standard{href: "#"}
+            %p Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo …
+            .btn
+              %a{href: "news_detail.htm"} Read more
+        / blog post end
+        %li.divider
+        / blog post start
+        %li.blog-post.clearfix{id: ""}
+          %section.post-title-container
+            %a{href: ""}
+              %h3 This is post with imagepost with imagepost with imagepost with imagepost with image
+          %article.post-body
+            .post-category
+              %a.category-standard{href: "#"}
+            %p Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo …
+            .btn
+              %a{href: ""} Read more
+        / blog post end
+        %li.divider
+        %li
+          %ul
+      / blog posts container end
+      / sidebar start
+      %aside.grid_4.aside.right
+        %ul.aside-widgets
+          %li#list_categories_widget-2.widget.widget_list_categories_widget.clearfix
+            %h5 News Categories
+            %ul
+              %li
+                %a{href: "", title: ""} Branding
+              %li
+                %a{href: "", title: ""} Development
+              %li
+                %a{href: "", title: ""} Graphic design
+              %li
+                %a{href: "", title: ""} Photo
+              %li
+                %a{href: "", title: ""} Web design
+          %li#archives-2.widget.widget_archive.clearfix
+            %h5 Archive
+            %ul
+              %li
+                %a{href: "", title: "March 2013"} March 2013
+              %li
+                %a{href: "", title: "February 2013"} February 2013
+              %li
+                %a{href: "", title: "January 2013"} January 2013
+      / sidebar end
+    / container_12 end
+  / content-wrapper end

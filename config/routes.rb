@@ -10,6 +10,12 @@ AtanSolutionsWebsite::Application.routes.draw do
     resources :languages
     resources :categories
     resources :category_languages
+    resources :sessions
+
+    match '/signin',  to: 'sessions#new',         via: 'get'
+    match '/login',  to: 'sessions#create',      via: 'get'
+    match '/change_password',  to: 'profiles#index',         via: 'get'
+    match '/update_password',  to: 'profiles#update_password',         via: 'get'
   end
   root :to => 'home#index'
   get '/about_us' => 'home#about_us'

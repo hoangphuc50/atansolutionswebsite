@@ -1,4 +1,5 @@
 class Admin::CategoryLanguagesController < Admin::ApplicationController
+  before_action :signed_in_user
   before_action :set_category_language, only: [:show, :edit, :update, :destroy]
 
   # GET /category_languages

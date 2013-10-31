@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :encrypted_password, :password_confirmation
+  #attr_accessible :email, :encrypted_password, :password_confirmation
   has_many :articles
 
   before_save { self.email = email.downcase }

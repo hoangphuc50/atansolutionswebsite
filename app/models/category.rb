@@ -5,4 +5,5 @@ class Category < ActiveRecord::Base
            foreign_key: 'parent_id'
 
   belongs_to :parent, class_name: 'Category'
+  has_many :languages,:through => :category_languages
 end

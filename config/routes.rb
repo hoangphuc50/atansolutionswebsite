@@ -11,6 +11,7 @@ AtanSolutionsWebsite::Application.routes.draw do
     resources :categories
     resources :category_languages
     resources :sessions
+    resources :dashboard
 
     match '/signin',  to: 'sessions#new',         via: 'get'
     match '/login',  to: 'sessions#create',      via: 'get'

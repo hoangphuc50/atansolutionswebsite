@@ -8,7 +8,7 @@ class Admin::SessionsController < ApplicationController
     if user
       sign_in user
       #flash.now[:error] = 'Login successfull !'
-      redirect_back_or admin_user
+      redirect_back_or admin_users_path
     else
       flash.now[:error] = 'Invalid email/password combination'
       render 'new'

@@ -1,10 +1,12 @@
 class HomeController < ActionController::Base
   before_filter :check_language
   def check_language
+    session[:language]= Language.where(:language_code=>params[:lang]).first().id if !params[:lang].nil?
     if session[:language]==nil
       @language_id=Language.where(default='true').first().id
+      session[:language]=@language_id
     else
-      @language_id=1
+      @language_id=session[:language]
     end
   end
   def index

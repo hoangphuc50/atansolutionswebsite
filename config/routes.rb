@@ -14,10 +14,10 @@ AtanSolutionsWebsite::Application.routes.draw do
     resources :dashboard
 
     match '/signin',  to: 'sessions#new',         via: 'get'
-    match '/login',  to: 'sessions#create',      via: 'get'
     match '/signout', to: 'sessions#destroy',     via: 'delete'
     match '/change_password',  to: 'profiles#index',         via: 'get'
-    match '/update_password',  to: 'profiles#update_password',         via: 'get'
+    match '/update_password',  to: 'profiles#update_password',   via: 'get'
+
   end
   root :to => 'home#index'
   get '/about_us' => 'home#about_us'
@@ -28,6 +28,7 @@ AtanSolutionsWebsite::Application.routes.draw do
   get 'projects/:id' => 'home#projects'
   resources :projects
   get 'project/:id' => 'home#project'
+  get 'project/:id/purchase' => 'home#project', as: :categories
   resources :project
   get 'article/:id' => 'home#article'
   resources :article

@@ -1,13 +1,14 @@
 = content_for :javascripts do
   = javascript_include_tag 'admin/languages_filter'
 - if @category.errors.any?
-  #error_explanation
-    %h2
-      = pluralize(@category.errors.count, 'error')
-      prohibited this user from being saved:
-    %ul
-      - @category.errors.full_messages.each do |msg|
-        %li= msg
+  #error_explanation.notification.information.png_bg
+    %div.flash-notice
+      %h2
+        = pluralize(@category.errors.count, 'error')
+        prohibited this category from being saved:
+      %ul
+        - @category.errors.full_messages.each do |msg|
+          %li= msg
 %fieldset
   / Set class to "column-left" or "column-right" on fieldsets to divide the form into columns
   %p

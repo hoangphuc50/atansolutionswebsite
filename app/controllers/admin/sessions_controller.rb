@@ -10,7 +10,7 @@ class Admin::SessionsController < ApplicationController
       redirect_back_or admin_users_path
     else
       flash[:error] = 'Invalid email/password combination' # Not quite right!
-      render 'new'
+      redirect_to admin_signin_path
     end
   end
   def destroy

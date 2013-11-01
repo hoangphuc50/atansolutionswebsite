@@ -20,9 +20,6 @@
             - if flash[:error]
               %div.flash-notice= flash[:error]
               = yield
-            - elsif flash[:notice]
-              %div.flash-notice= flash[:notice]
-              = yield
             - else
               %div Just click "Sign In".
           %p

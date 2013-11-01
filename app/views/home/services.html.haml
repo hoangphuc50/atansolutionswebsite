@@ -14,7 +14,7 @@
         - @all_services.each do |service|
           .grid_4.service.omega
             .icon-container
-              %a.icon-th.service-icon{href: "/service/#{service.id}"}
+              %a.icon-th.service-icon{href: "service/#{service.id}"}
             %a{href: "service/#{service.id}"}
               %h4= service.title
             %p= service.short_description

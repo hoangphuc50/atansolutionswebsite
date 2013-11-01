@@ -13,209 +13,40 @@
         / portfolio quicksand filter start
         %ul#portfolio-filter
           %li.active
-            %a.all{href: "#"}> All
+            = link_to("All",projects_path)
             \/
-          %li
-            %a.graphic-design{href: "#"}> Graphic design
-            \/
-          %li
-            %a.motion-graphics{href: "#"}> Motion graphics
-            \/
-          %li
-            %a.photography{href: "#"}> Photography
-            \/
-          %li
-            %a.web-design{href: "#"} Web design
+          - @child_projects_category.each do |row|
+            %li
+              = link_to(row.title,projects_path(:id=>row.category_id))
+              -#%a.graphic-design{href: "projects/#{row.id}"}>
+                =row.title
+              \/
         / portfolio quicksand filter end
     / container_12 start
     .container_12
       / portfolio items list start
       %ul#filter-item
-        %li.grid_4{"data-alpha" => "motion-graphics", "data-id" => "id-1"}
-          / portfolio figure with animation start
-          %figure.portfolio
-            .img-hover.overlay
-              %a.portfolio-image{href: "our_projects_detail.htm"}
-                %img{alt: "Portfolio Image", src: "http://pixel-industry.com/wordpress/pocket/wp-content/uploads/2013/02/creatt-460x296.jpg", width: "300"}/
-              .mask
-                %a.thumb.info{"data-gal" => "prettyPhoto[pp_gallery]", href: "our_projects_detail.htm", title: ""} zoom
-            %figcaption
-              .caption-title
-                %a{href: "our_projects_detail.htm"}
-                  %p.title
-                    One winged angel
-                %p.subtitle
-                  motion-graphics
-        %li.grid_4{"data-alpha" => "web-design", "data-id" => "id-2"}
-          / portfolio figure with animation start
-          %figure.portfolio
-            .img-hover.overlay
-              %a.portfolio-image{href: "our_projects_detail.htm"}
-                %img{alt: "Portfolio Image", src: "http://pixel-industry.com/wordpress/pocket/wp-content/uploads/2013/02/photodune-218412-work-from-home-s-2-460x296.jpg", width: "300"}/
-              .mask
-                %a.thumb.info{"data-gal" => "prettyPhoto[pp_gallery]", href: "our_projects_detail.htm", title: "Top view of young woman working on laptop at home"} zoom
-            %figcaption
-              .caption-title
-                %a{href: "our_projects_detail.htm"}
-                  %p.title
-                    Soul of the devil
-                %p.subtitle
-                  web-design
-        %li.grid_4{"data-alpha" => "graphic-design", "data-id" => "id-3"}
-          / portfolio figure with animation start
-          %figure.portfolio
-            .img-hover.overlay
-              %a.portfolio-image{href: "our_projects_detail.htm"}
-                %img{alt: "Portfolio Image", src: "http://pixel-industry.com/wordpress/pocket/wp-content/uploads/2013/02/dragonfly_wing-1024x1024-460x296.jpg", width: "300"}/
-              .mask
-                %a.thumb.info{"data-gal" => "prettyPhoto[pp_gallery]", href: "our_projects_detail.htm", title: ""} zoom
-            %figcaption
-              .caption-title
-                %a{href: ""}
-                  %p.title
-                    Concept art
-                %p.subtitle
-                  graphic-design
-        %li.clear
-        %li.grid_4{"data-alpha" => "graphic-design", "data-id" => "id-4"}
-          / portfolio figure with animation start
-          %figure.portfolio
-            .img-hover.overlay
-              %a.portfolio-image{href: ""}
-                %img{alt: "Portfolio Image", src: "http://pixel-industry.com/wordpress/pocket/wp-content/uploads/2013/02/photodune-220303-panoramic-view-of-beautiful-skyscrapers-and-river-s-460x296.jpg", width: "300"}/
-              .mask
-                %a.thumb.info{"data-gal" => "prettyPhoto[pp_gallery]", href: "", title: "Panoramic view of beautiful architectural skyscrapers and river"} zoom
-            %figcaption
-              .caption-title
-                %a{href: ""}
-                  %p.title
-                    Black winged angel
-                %p.subtitle
-                  graphic-design
-        %li.grid_4{"data-alpha" => "photography", "data-id" => "id-5"}
-          / portfolio figure with animation start
-          %figure.portfolio
-            .img-hover.overlay
-              %a.portfolio-image{href: ""}
-                %img{alt: "Portfolio Image", src: "http://pixel-industry.com/wordpress/pocket/wp-content/uploads/2013/02/sports-illustration-soccer-460x296.jpg", width: "300"}/
-              .mask
-                %a.thumb.info{"data-gal" => "prettyPhoto[pp_gallery]", href: "", title: ""} zoom
-            %figcaption
-              .caption-title
-                %a{href: ""}
-                  %p.title
-                    Dark angel
-                %p.subtitle
-                  photography
-        %li.grid_4{"data-alpha" => "web-design", "data-id" => "id-6"}
-          / portfolio figure with animation start
-          %figure.portfolio
-            .img-hover.overlay
-              %a.portfolio-image{href: ""}
-                %img{alt: "Portfolio Image", src: "http://pixel-industry.com/wordpress/pocket/wp-content/uploads/2013/02/photodune-366741-flying-s-460x296.jpg", width: "300"}/
-              .mask
-                %a.thumb.info{"data-gal" => "prettyPhoto[pp_gallery]", href: "", title: "Conceptual image of young business partners flying with parachutes on their backs"} zoom
-            %figcaption
-              .caption-title
-                %a{href: ""}
-                  %p.title
-                    Winged angel 2
-                %p.subtitle
-                  web-design
-        %li.clear
-        %li.grid_4{"data-alpha" => "web-design", "data-id" => "id-7"}
-          / portfolio figure with animation start
-          %figure.portfolio
-            .img-hover.overlay
-              %a.portfolio-image{href: ""}
-                %img{alt: "Portfolio Image", src: "http://pixel-industry.com/wordpress/pocket/wp-content/uploads/2013/02/The_Old_Farm_by_nuaHs-460x296.jpg", width: "300"}/
-              .mask
-                %a.thumb.info{"data-gal" => "prettyPhoto[pp_gallery]", href: "", title: ""} zoom
-            %figcaption
-              .caption-title
-                %a{href: ""}
-                  %p.title
-                    Dark temptation
-                %p.subtitle
-                  web-design
-        %li.grid_4{"data-alpha" => "web-design", "data-id" => "id-8"}
-          / portfolio figure with animation start
-          %figure.portfolio
-            .img-hover.overlay
-              %a.portfolio-image{href: ""}
-                %img{alt: "Portfolio Image", src: "http://pixel-industry.com/wordpress/pocket/wp-content/uploads/2013/02/photodune-2297523-jet-liner-over-the-tropical-island-m-460x296.jpg", width: "300"}/
-              .mask
-                %a.thumb.info{"data-gal" => "prettyPhoto[pp_gallery]", href: "", title: "Jet liner over the tropical island. Panoramic composition in very high resolution. HDR processed."} zoom
-            %figcaption
-              .caption-title
-                %a{href: ""}
-                  %p.title
-                    Winged angel
-                %p.subtitle
-                  web-design
-        %li.grid_4{"data-alpha" => "web-design", "data-id" => "id-9"}
-          / portfolio figure with animation start
-          %figure.portfolio
-            .img-hover.overlay
-              %a.portfolio-image{href: ""}
-                %img{alt: "Portfolio Image", src: "http://pixel-industry.com/wordpress/pocket/wp-content/uploads/2013/02/portfolio41.jpg", width: "300"}/
-              .mask
-                %a.thumb.info{"data-gal" => "prettyPhoto[pp_gallery]", href: "", title: ""} zoom
-            %figcaption
-              .caption-title
-                %a{href: ""}
-                  %p.title
-                    Simply beautiful
-                %p.subtitle
-                  web-design
-        %li.clear
-        %li.grid_4{"data-alpha" => "graphic-design", "data-id" => "id-10"}
-          / portfolio figure with animation start
-          %figure.portfolio
-            .img-hover.overlay
-              %a.portfolio-image{href: ""}
-                %img{alt: "Portfolio Image", src: "http://pixel-industry.com/wordpress/pocket/wp-content/uploads/2013/02/blogpost5-930x610-460x296.jpg", width: "300"}/
-              .mask
-                %a.thumb.info{"data-gal" => "prettyPhoto[pp_gallery]", href: "", title: ""} zoom
-            %figcaption
-              .caption-title
-                %a{href: ""}
-                  %p.title
-                    Dark Godess
-                %p.subtitle
-                  graphic-design
-        %li.grid_4{"data-alpha" => "graphic-design", "data-id" => "id-11"}
-          / portfolio figure with animation start
-          %figure.portfolio
-            .img-hover.overlay
-              %a.portfolio-image{href: ""}
-                %img{alt: "Portfolio Image", src: "http://pixel-industry.com/wordpress/pocket/wp-content/uploads/2013/02/photodune-202687-smiling-cute-business-woman-with-colleagues-at-the-back-s-460x296.jpg", width: "300"}/
-              .mask
-                %a.thumb.info{"data-gal" => "prettyPhoto[pp_gallery]", href: "", title: "Beautiful young business executive with colleagues discussing in the background"} zoom
-            %figcaption
-              .caption-title
-                %a{href: ""}
-                  %p.title
-                    Work by streetx222
-                %p.subtitle
-                  graphic-design
-        %li.grid_4{"data-alpha" => "photography", "data-id" => "id-12"}
-          / portfolio figure with animation start
-          %figure.portfolio
-            .img-hover.overlay
-              %a.portfolio-image{href: ""}
-                %img{alt: "Portfolio Image", src: "http://pixel-industry.com/wordpress/pocket/wp-content/uploads/2013/02/photodune-1188346-belvedere-of-tuscany-s-1-460x296.jpg", width: "300"}/
-              .mask
-                %a.thumb.info{"data-gal" => "prettyPhoto[pp_gallery]", href: "", title: "Scenic view of typical Tuscany landscape"} zoom
-            %figcaption
-              .caption-title
-                %a{href: ""}
-                  %p.title
-                    Simply amazing
-                %p.subtitle
-                  photography
+        - @projects_list.each do |project|
+          %li.grid_4{"data-alpha" => "motion-graphics", "data-id" => "id-1"}
+            / portfolio figure with animation start
+            %figure.portfolio
+              .img-hover.overlay
+                %a.portfolio-image{href: "/project/#{project.id}"}
+                  %img{alt: project.title, src: "/site_images/#{Article.where("id=#{project.article_id}").first().images}", width: "300"}
+                .mask
+                  %a.thumb.info{href: "/project/#{project.id}", title: ""} zoom
+              %figcaption
+                .caption-title
+                  %a{href: "/project/#{project.id}"}
+                    %p.title
+                      =project.title
+                  %p.subtitle
+                    -category_id=Article.where("id=#{project.article_id}").first().category_id
+                    =CategoryLanguage.where("category_id=#{category_id} and language_id=#{@language_id}").first().title
+
         %li.clear
       / pagination start
+      -#= paginate @projects_list
       %ul
         %li.pagination.portfolio
           %ul.page-numbers

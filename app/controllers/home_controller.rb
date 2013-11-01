@@ -6,33 +6,51 @@ class HomeController < ActionController::Base
     else
       @language_id=1
     end
-    end
+  end
   def index
-    category_index=Category.where("name='index'").first().id if Category.where("name='index'").nil?
-    category_services=Category.where("name='services'").first().id if Category.where("name='services'")
-    @slide=ArticleLanguage.includes(:article,:language).where("language_id=#{@language_id} and articles.category_id=#{category_index} and articles.priority=1").first().content if ArticleLanguage.includes(:article,:language).where("language_id=#{@language_id} and articles.category_id=#{category_index} and articles.priority=1").nil?
-    @about_us_slide=ArticleLanguage.includes(:article,:language).where("language_id=#{@language_id} and articles.category_id=#{category_index} and articles.priority=2").first().content if ArticleLanguage.includes(:article,:language).where("language_id=#{@language_id} and articles.category_id=#{category_index} and articles.priority=2").nil?
-    @comment_slide=ArticleLanguage.includes(:article,:language).where("language_id=#{@language_id} and articles.category_id=#{category_index} and articles.priority=3").first().content if ArticleLanguage.includes(:article,:language).where("language_id=#{@language_id} and articles.category_id=#{category_index} and articles.priority=3").nil?
-    @services=ArticleLanguage.includes(:article,:language).where("language_id=#{@language_id} and articles.category_id=#{category_services} and articles.priority=1").take(3).content   if ArticleLanguage.includes(:article,:language).where("language_id=#{@language_id} and articles.category_id=#{category_services} and articles.priority=1").nil?
+    category_index=Category.where("name='index'").first().id
+    category_services=Category.where("name='services'").first().id
+    @slide=select_html_article(category_index,1)
+    @about_us_slide=select_html_article(category_index,2)
+    @comment_slide= select_html_article(category_index,3)
+    #@services=ArticleLanguage.includes(:article,:language).where("language_id=#{@language_id} and articles.category_id=#{category_services} and articles.priority=1").take(3).content
   end
   def projects
+    category_projects=Category.where("name='projects'").first().id
+    @child_projects_category=CategoryLanguage.includes(:category).where("language_id=#{@language_id} and categories.parent_id=#{category_projects}")
+    if params[:id]!=nil
+      @projects_list=ArticleLanguage.includes({article: :category},:language).where("language_id=#{@language_id} and articles.category_id=#{params[:id]}").all
+    else
+      @projects_list=ArticleLanguage.includes({article: :category},:language).where("language_id=#{@language_id} and categories.parent_id=#{category_projects}").all
+    end
 
+
+    #@projects_list_display=@projects_list.paginate(:page => params[:page])
+  end
+  def project
+    @project_detail=ArticleLanguage.includes(:article,:language).where("language_id=#{@language_id} and id=#{params[:id]}").first()
+    category_id=Article.where("id=#{@project_detail.article_id}").first().category_id
+    @project_same_category=ArticleLanguage.includes(:article,:language).where("language_id=#{@language_id} and articles.category_id=#{category_id}").take(4)
   end
   def services
     category_services=Category.where("name='services'").first().id
-    @about_my_services=ArticleLanguage.includes(:article,:language).where("language_id=#{@language_id} and articles.category_id=#{category_services} and articles.priority=99").first().content
+    @about_my_services=select_html_article(category_services,99)
     @all_services=ArticleLanguage.includes(:article,:language).where("language_id=#{@language_id} and articles.category_id=#{category_services} and articles.priority=1").all
-    @slide_page_services=ArticleLanguage.includes(:article,:language).where("language_id=#{@language_id} and articles.category_id=#{category_services} and articles.priority=100").first().content
+    @slide_page_services=select_html_article(category_services,100)
   end
   def news
   end
   def about_us
     category_about_us=Category.where("name='about_us'").first().id
-    @about_us_article=ArticleLanguage.includes(:article,:language).where("language_id=#{@language_id} and articles.category_id=#{category_about_us} and articles.priority=1").first().content
-    @about_us_article_slide=ArticleLanguage.includes(:article,:language).where("language_id=#{@language_id} and articles.category_id=#{category_about_us } and articles.priority=2").first().content
-    @about_us_article_member=ArticleLanguage.includes(:article,:language).where("language_id=#{@language_id} and articles.category_id=#{category_about_us} and articles.priority=3").first().content
-    @about_us_product_slide=ArticleLanguage.includes(:article,:language).where("language_id=#{@language_id} and articles.category_id=#{category_about_us} and articles.priority=4").first().content
+    @about_us_article=select_html_article(category_about_us,1)
+    @about_us_article_slide=select_html_article(category_about_us,2)
+    @about_us_article_member=select_html_article(category_about_us,3)
+    @about_us_product_slide=select_html_article(category_about_us,4)
   end
   def contact
   end
+  def select_html_article(category_id="",priority="")
+      ArticleLanguage.includes(:article,:language).where("language_id=#{@language_id} and articles.category_id=#{category_id} and articles.priority=#{priority}").first().content
+  end
+
 end

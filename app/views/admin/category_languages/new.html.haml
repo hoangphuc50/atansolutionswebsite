@@ -4,4 +4,4 @@
   = form_for @category_language, url: admin_category_languages_path, html: { method: :post } do |f|
     = render 'form', f: f
     %input.button{:type => 'submit', :value => 'Save'}
-    = link_to 'Back', admin_category_path(:id=>params[:id]) ,:class => 'button'
+    = link_to 'Back', admin_category_path(:id=>params[:id_cate] ? params[:id_cate] : '') ,:class => 'button'

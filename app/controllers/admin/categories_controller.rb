@@ -5,7 +5,7 @@ class Admin::CategoriesController < Admin::ApplicationController
   # GET /categories
   # GET /categories.json
   def index
-    @category = Category.order('name ASC').all
+    @category = Category.order('parent_id desc,name asc').all
   end
 
   # GET /categories/1

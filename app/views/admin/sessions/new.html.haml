@@ -12,10 +12,10 @@
       #login-top
         %h1 Simpla Admin
         / Logo (221px width)
-        %img#logo{:alt => "Simpla Admin logo", :src => "/assets/admin/logo.png"}/
+        /%img#logo{:alt => "Simpla Admin logo", :src => "/assets/admin/logo.png"}/
       / End #logn-top
       #login-content
-        %form{:action => "login", :method => "get"}
+        = form_for(:session, url: admin_sessions_path) do |f|
           .notification.information.png_bg
             - if flash[:error]
               %div.flash-notice= flash[:error]
@@ -26,18 +26,18 @@
             - else
               %div Just click "Sign In".
           %p
-            %label Email
-            %input.text-input{:type => "text", :name => "email"}/
+            = f.label :email
+            = f.text_field :email ,:class => 'text-input'
           .clear
           %p
-            %label Password
-            %input.text-input{:type => "password", :name => "encrypted_password"}/
+            = f.label :password
+            = f.password_field :password,:class => 'text-input'
           .clear
           -#%p#remember-password
           -#  %input{:type => "checkbox"}>/
           -#  Remember me
           .clear
           %p
-            %input.button{:type => "submit", :value => "Sign In"}/
+            = f.submit "Sign in", class: 'button'
       / End #login-content
     / End #login-wrapper

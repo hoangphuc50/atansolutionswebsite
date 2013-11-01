@@ -5,16 +5,17 @@ AtanSolutionsWebsite::Application.routes.draw do
   # Admin routes
   #match '/admin' => 'admin/dashboard#index', :as => :admin_dashboard
   namespace :admin do
-    root to: 'users#index'
+    root to: 'dashboard#index'
     resources :users
     resources :languages
     resources :categories
     resources :category_languages
-    resources :sessions
+    resources :sessions, only: [:new, :create, :destroy]
     resources :dashboard
 
     match '/signin',  to: 'sessions#new',         via: 'get'
     match '/login',  to: 'sessions#create',      via: 'get'
+    match '/signout', to: 'sessions#destroy',     via: 'delete'
     match '/change_password',  to: 'profiles#index',         via: 'get'
     match '/update_password',  to: 'profiles#update_password',         via: 'get'
   end

@@ -5,7 +5,7 @@ class Admin::CategoryLanguagesController < Admin::ApplicationController
   # GET /category_languages
   # GET /category_languages.json
   def index
-    @category_language = CategoryLanguage.all
+    @category_language = CategoryLanguage.order('id').all
   end
 
   # GET /category_languages/1
@@ -26,13 +26,8 @@ class Admin::CategoryLanguagesController < Admin::ApplicationController
   # POST /category_languages.json
   def create
     @category_language = CategoryLanguage.new(category_language_params)
-
     if @category_language.save
-      if @category_language.save
-        flash[:notice] = I18n.t('admin.languages.new.success', :name => @category_language.title)
-      else
-        render :action => :new
-      end
+      flash[:notice] = I18n.t('admin.languages.new.success', :name => @category_language.title)
       redirect_to admin_category_path(:id=>@category_language.category.id)
     else
       render :action => :new

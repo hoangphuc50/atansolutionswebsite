@@ -3,7 +3,6 @@
     %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}/
     %title= 'AtanSolutions.Com'
     = stylesheet_link_tag 'admin/application'
-    = javascript_include_tag 'application'
     = javascript_include_tag 'admin/application'
     = csrf_meta_tag
   %body
@@ -15,26 +14,29 @@
           %h1#sidebar-title
             %a{:href => "#"} Simpla Admin
           / Logo (221px wide)
-          %a{:href => "#"}
+          %a{:href => admin_root_path}
             %img#logo{:alt => "Simpla Admin logo", :src => "/assets/admin/logo.png"}/
           / Sidebar Profile links
           #profile-links
             Hello,
-            = succeed "," do
-              %a{:href => "#", :title => "Edit your profile"} John Doe
-            you have
-            %a{:href => "#messages", :rel => "modal", :title => "3 Messages"} 3 Messages
+            = succeed '' do
+              /%a{:href => "#", :title => "Edit your profile"}
+              =current_user.name
+            -#you have
+            -#%a{:href => "#messages", :rel => "modal", :title => "3 Messages"} 3 Messages
             %br/
             %br/
-            %a{:href => "change_password", :title => "Change Password"} Change Password
+            -#%a{:href => "change_password", :title => "Change Password"} Change Password
+            = link_to "Change Password", admin_change_password_path
             |
-            %a{:href => "#", :title => "Sign Out"} Sign Out
+            = link_to "Sign out", admin_signout_path, method: "delete"
+            -#= link_to "Sign out", signout_path, method: "delete"
           %ul#main-nav
             / Accordion Menu
             %li
               %a.nav-top-item.current{:href => "#"}
                 / Add the class "current" to current menu item
-                Dashboard
+                Home admin
               %ul
                 %li
                   %a{:href => "#"} Write a new Article
@@ -100,7 +102,10 @@
               %a{:href => "http://www.google.com/support/bin/answer.py?answer=23852", :title => "Enable Javascript in your browser"} enable
               Javascript to navigate the interface properly.
         / Page Head
-        %h2 Welcome John
+
+        = succeed '' do
+          /%a{:href => "#", :title => "Edit your profile"}
+          %h2 Welcome #{current_user.name}
         %p#page-intro What would you like to do?
         %ul.shortcut-buttons-set
           %li
@@ -143,9 +148,9 @@
         #footer
           %small
             / Remove this notice or replace it with whatever you want
-            © Copyright 2009 Your Company | Powered by
-            %a{:href => "http://themeforest.net/item/simpla-admin-flexible-user-friendly-admin-skin/46073"} Simpla Admin
+            © Copyright 2009 AtanSolutions | Powered by
+            %a{:href => '#'} Simpla Admin
             |
-            %a{:href => "#"} Top
+            %a{:href => '#'} Top
         / End #footer
       / End #main-content

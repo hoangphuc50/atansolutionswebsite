@@ -7,7 +7,7 @@
   %p
     %strong Parent category:
     = @category.parent.try(:name)
-  = link_to 'New category language', new_admin_category_language_path(:id=>@category.id) ,:class => 'button'
+  = link_to 'New category language', new_admin_category_language_path(:id_cate=>@category.id) ,:class => 'button'
   - @category_language=CategoryLanguage.where(:category_id=>@category.id)
   %table
     %thead

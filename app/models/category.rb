@@ -5,4 +5,5 @@ class Category < ActiveRecord::Base
            foreign_key: 'parent_id'
 
   belongs_to :parent, class_name: 'Category'
+  validates :name, presence: true   , length: { maximum: 50 }
 end

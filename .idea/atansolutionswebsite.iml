@@ -23,7 +23,7 @@
     <orderEntry type="library" scope="PROVIDED" name="activesupport (v4.0.1.rc1, RVM: ruby-1.9.3-p448) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="arel (v4.0.1, RVM: ruby-1.9.3-p448) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="atomic (v1.1.14, RVM: ruby-1.9.3-p448) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="bcrypt-ruby (v3.0.1, RVM: ruby-1.9.3-p448) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="bcrypt-ruby (v3.1.2, RVM: ruby-1.9.3-p448) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="builder (v3.1.4, RVM: ruby-1.9.3-p448) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bundler (v1.4.0.rc.1, RVM: ruby-1.9.3-p448) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="coffee-rails (v4.0.1, RVM: ruby-1.9.3-p448) [gem]" level="application" />
@@ -44,13 +44,14 @@
     <orderEntry type="library" scope="PROVIDED" name="minitest (v4.7.5, RVM: ruby-1.9.3-p448) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="multi_json (v1.8.2, RVM: ruby-1.9.3-p448) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="pg (v0.17.0, RVM: ruby-1.9.3-p448) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="polyamorous (v0.6.4, RVM: ruby-1.9.3-p448) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="polyglot (v0.3.3, RVM: ruby-1.9.3-p448) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="protected_attributes (v1.0.4, RVM: ruby-1.9.3-p448) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rack (v1.5.2, RVM: ruby-1.9.3-p448) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rack-test (v0.6.2, RVM: ruby-1.9.3-p448) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rails (v4.0.1.rc1, RVM: ruby-1.9.3-p448) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="railties (v4.0.1.rc1, RVM: ruby-1.9.3-p448) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rake (v10.1.0, RVM: ruby-1.9.3-p448) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="ransack (v1.0.0, RVM: ruby-1.9.3-p448) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rdoc (v3.12.2, RVM: ruby-1.9.3-p448) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ref (v1.0.5, RVM: ruby-1.9.3-p448) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sass (v3.2.12, RVM: ruby-1.9.3-p448) [gem]" level="application" />

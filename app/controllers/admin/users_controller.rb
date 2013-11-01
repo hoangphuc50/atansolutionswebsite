@@ -7,7 +7,6 @@ class Admin::UsersController < Admin::ApplicationController
   def index
     @users = User.all
   end
-
   # GET /users/1
   # GET /users/1.json
   def show
@@ -70,7 +69,15 @@ class Admin::UsersController < Admin::ApplicationController
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
+  private
   def user_params
-    params.require(:user).permit(:name, :email, :encrypted_password)
+    params.require(:user).permit(:name, :email, :password,
+                                 :password_confirmation)
+  end
+
+  # Before filters
+
+  def signed_in_user
+    redirect_to admin_signin_path, notice: "Please sign in." unless signed_in?
   end
 end

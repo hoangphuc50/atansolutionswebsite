@@ -12,13 +12,13 @@
   / Set class to "column-left" or "column-right" on fieldsets to divide the form into columns
   %p
     %label
-    = f.label :name_code
+    = f.label :name
     = f.text_field :name, :class => 'text-input small-input'
 
   %p
     %label
-    = f.label :parent_category
-    = f.select :parent_id, options_from_collection_for_select(Category.order(:name), :id, :name), :prompt => 'Select Category'
+    = f.label :parent_id
+    = f.select :parent_id, Category.order('parent_id desc,name asc').all.collect {|c| [c.name, c.id]} , :prompt => 'Select Category'
   -#%p
   -#  %label
   -#  = f.label :Language_category

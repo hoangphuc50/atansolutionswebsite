@@ -11,12 +11,12 @@
   %p
     %label
     = f.label :category
-    = f.select :category_id, Category.order('name ASC').all.collect {|c| [c.name, c.id]}, :class => 'language_filter_select'
-
+    = f.select :category_id, Category.order('name ASC').all.collect {|c| [c.name, c.id]},:selected =>"#{params[:id_cate] ? params[:id_cate] : @category_language.category.try(:id)}" ,:disabled => true,:prompt => 'Select Category'
+    -#= f.select :category_id, options_from_collection_for_select(Category.order('name ASC'), :id, :name, params[:id_cate] ? params[:id_cate] : @category_language.category.try(:id)), :disabled => true, :prompt => 'Select Category'
   %p
     %label
     = f.label :language
-    = f.select :language_id, Language.order('name ASC').all.collect {|c| [c.name, c.id]}, :class => 'language_filter_select'
+    = f.select :language_id, Language.order('name ASC').all.collect {|c| [c.name, c.id]}
   %p
     %label
     = f.label :title

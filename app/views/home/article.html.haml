@@ -8,26 +8,19 @@
   .content-wrapper.clearfix
     / container_12 start
     .container_12
-      / blog posts container start
-      %ul.grid_8.content-sidebar-right
+      .grid_8.content-sidebar-right
         / blog post start
-        -@news_list_all.each do |row|
-          %li.blog-post.clearfix{id: ""}
-            %section.post-title-container
-              %a{href: "/article/#{row.id}"}
-                %h3= row.title
-            %article.post-body
-              .post-category
-                %a.category-standard{href: "/article/#{row.id}"}
-                  %img{alt: row.title, src: "/site_images/#{Article.where("id=#{row.article_id}").first().images}", width: "180",height:"140"}
-              %p
-                =row.short_description
-              .btn
-                %a{href: "/article/#{row.id}"} Read more
-          / blog post end
-          %li.divider
-      / blog posts container end
-      / sidebar start
+        %article#post-149.post-149.post.type-post.status-publish.format-gallery.hentry.category-development.blog-post.no-post-image
+          %section.post-title-container
+            %h3
+              =@article_detail.title
+          / post body start
+          %article.post-body
+            =raw @article_detail.content
+          / post body end
+        / blog post end
+        .divider
+        / post comments start
       %aside.grid_4.aside.right
         %ul.aside-widgets
           %li#list_categories_widget-2.widget.widget_list_categories_widget.clearfix

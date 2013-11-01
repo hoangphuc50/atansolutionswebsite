@@ -30,7 +30,7 @@ class HomeController < ActionController::Base
   def project
     @project_detail=ArticleLanguage.includes(:article,:language).where("language_id=#{@language_id} and id=#{params[:id]}").first()
     category_id=Article.where("id=#{@project_detail.article_id}").first().category_id
-    @project_same_category=ArticleLanguage.includes(:article,:language).where("language_id=#{@language_id} and articles.category_id=#{category_id}").take(4)
+    @project_same_category=ArticleLanguage.includes(:article,:language).where("language_id=#{@language_id} and articles.category_id=#{category_id} and articles.id!=#{@project_detail.article_id}").take(4)
   end
   def services
     category_services=Category.where("name='services'").first().id
@@ -39,6 +39,18 @@ class HomeController < ActionController::Base
     @slide_page_services=select_html_article(category_services,100)
   end
   def news
+    news_category_id=Category.where("name='news'").first().id
+    @news_category_all=CategoryLanguage.includes(:category).where("language_id=#{@language_id} and categories.parent_id=#{news_category_id}")
+    if params[:id]!=nil
+      @news_list_all= ArticleLanguage.includes({article: :category},:language).where("language_id=#{@language_id} and articles.category_id=#{params[:id]}").all
+    else
+      @news_list_all= ArticleLanguage.includes({article: :category},:language).where("language_id=#{@language_id} and categories.parent_id=#{news_category_id}").all
+    end
+  end
+  def article
+    news_category_id=Category.where("name='news'").first().id
+    @article_detail=ArticleLanguage.includes(:article,:language).where("language_id=#{@language_id} and id=#{params[:id]}").first()
+    @news_category_all=CategoryLanguage.includes(:category).where("language_id=#{@language_id} and categories.parent_id=#{news_category_id}")
   end
   def about_us
     category_about_us=Category.where("name='about_us'").first().id

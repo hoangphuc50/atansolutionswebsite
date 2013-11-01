@@ -11,6 +11,8 @@ gem 'execjs'
 gem 'therubyracer'
 #gem 'meta_search'    # For column sort and search of tables
 gem 'ransack'
+#gem 'protected_attributes'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 gem 'haml-rails'
@@ -37,7 +39,8 @@ group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
-
+gem "will_paginate", "~> 3.0.5"
+gem "pony", "~> 1.5.1"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

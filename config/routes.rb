@@ -23,12 +23,18 @@ AtanSolutionsWebsite::Application.routes.draw do
   get '/about_us' => 'home#about_us'
   get '/services' => 'home#services'
   get '/news' => 'home#news'
+  get 'news/:id' => 'home#news'
   get '/projects' => 'home#projects'
   get 'projects/:id' => 'home#projects'
   resources :projects
   get 'project/:id' => 'home#project'
   resources :project
-  get '/contact' => 'home#contact'
+  get 'article/:id' => 'home#article'
+  resources :article
+  get '/contact' => 'contacts#new'
+  resources :contacts, :only => [:new, :create] do
+    get 'thank_you', :on => :collection
+  end
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 

@@ -12,6 +12,8 @@ AtanSolutionsWebsite::Application.routes.draw do
     resources :category_languages
     resources :sessions, only: [:new, :create, :destroy]
     resources :dashboard
+    resources :articles
+    resources :article_languages
 
     match '/signin',  to: 'sessions#new',         via: 'get'
     match '/signout', to: 'sessions#destroy',     via: 'delete'

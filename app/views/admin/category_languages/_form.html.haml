@@ -17,7 +17,7 @@
   %p
     %label
     = f.label :language
-    = f.select :language_id, Language.order('name ASC').all.collect {|c| [c.name, c.id]}
+    = f.select :language_id, Language.order('name ASC').all.collect {|c| [c.name, c.id]},:selected =>"#{params[:id_lang]? params[:id_lang] : @category_language.language.try(:id)}"
   %p
     %label
     = f.label :title

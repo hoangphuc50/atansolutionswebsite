@@ -5,6 +5,7 @@
     var last_name = $("#contact_last_name");
     var email=   $("#contact_email");
     var message=   $("#contact_message");
+    var error_messages=$("#error_messages");
     form.submit(function() {
     // validation begin before submit
     if ( validateFirstname() && validateLastname() && validateEmail() && validateMessage()) {
@@ -14,19 +15,19 @@
     function validateFirstname() {
     //validation for empty
     if (first_name.val() == "Your First Name" || first_name.val() == "" ){
-      first_name.next('.first_name').remove();
-      first_name.after('<span class="first_name" style="font-weight:bold; color:red;padding-left:10px">First name can\'t blank</span>');
+      error_messages.next('.first_name').remove();
+      error_messages.after('<p class="first_name" style="font-weight:bold; color:red;padding-bottom:10px">First name can\'t blank</p>');
     return false;
-    } else {first_name.next('.first_name').remove();return true;
+    } else {error_messages.next('.first_name').remove();return true;
     }
   }
   function validateLastname() {
       //validation for empty
       if (last_name.val() == "Your Last Name" || last_name.val() == "" ){
-        last_name.next('.last_name').remove();
-        last_name.after('<span class="last_name" style="font-weight:bold; color:red;padding-left:10px">Last name can\'t blank</span>');
+        error_messages.next('.last_name').remove();
+        error_messages.after('<p class="last_name" style="font-weight:bold; color:red;padding-bottom:10px">Last name can\'t blank</p>');
       return false;
-      } else {last_name.next('.last_name').remove();return true;
+      } else {error_messages.next('.last_name').remove();return true;
       }
   }
   function validateEmail() {
@@ -34,26 +35,26 @@
         regex = /[A-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[A-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[A-z0-9](?:[A-z0-9-]*[A-z0-9])?\.)+[A-z0-9](?:[A-z0-9-]*[A-z0-9])?/;
 
         if (email.val() == "Your Email" || email.val() == "" ||!regex.test(email.val())){
-          email.next('.email').remove();
-          email.after('<span class="email" style="font-weight:bold; color:red;padding-left:10px">Email can\'t blank</span>');
+          error_messages.next('.email').remove();
+          error_messages.after('<p class="email" style="font-weight:bold; color:red;padding-bottom:10px">Email can\'t blank and not right format</p>');
         return false;
-        } else {email.next('.email').remove();return true;
+        } else {error_messages.next('.email').remove();return true;
         }
     }
   function validateMessage() {
         //validation for empty
-        if (message.val() == "Your Last Name"){
-          message.next('.message').remove();
-          message.after('<span class="message" style="font-weight:bold; color:red;padding-left:10px">Message can\'t blank</span>');
+        if (message.val() == ""){
+          error_messages.next('.message').remove();
+          error_messages.after('<p class="message" style="font-weight:bold; color:red;">Message can\'t blank</p>');
         return false;
-        } else {message.next('.message').remove();return true;
+        } else {error_messages.next('.message').remove();return true;
         }
     }
   });
 %section.page-title
   .title.pattern-default
     %h1 Contact
-    %span.subtitle
+    %p.subtitle
       The Very Best Way To Get in Touch With Us
 / page-title end
 #content-container
@@ -62,22 +63,7 @@
     / container_12 start
     .container_12
       .grid_12
-        #map_canvas
-        :javascript
-          jQuery(function(){
-              var yourStartLatLng = new google.maps.LatLng(48.880833, 2.42333);
-              jQuery('#map_canvas').gmap({
-                  'center': yourStartLatLng,
-                  'zoom': 15,
-                  'disableDefaultUI':false,
-                  'scrollwheel' : true,
-                  'callback': function() {
-                      var self = this;
-                      self.addMarker({
-                          'position': this.get('map').getCenter()
-                      });
-                  }
-              });});
+        =raw @article_map.content
         -#.grid_8.alpha
         -#  %h4 Leave us a message
         -#  #wpcf7-f137-p56-o1.wpcf7
@@ -88,22 +74,7 @@
           #wpcf7-f137-p56-o1.wpcf7
             = form_for @inquiry, :url => { :action => :create },:class=>"wpcf7-form" do |f|
               = render :partial => 'form', :object => f
-        .grid_4.omega
-          %h4 Contact info
-          %p 25-Th Street Name, Florida, CA 29637, USA
-          %p Consectetur adipiscing elit aeneane lorem lipsum, condimentum ultrices consequ atvehicula mauris lipsum adipiscing lipsum aenean orci lorem.
-          %ul
-            %li Phone: (123) 456-7890
-            %li Fax: (123) 456-7890
-            %li Mob: (123) 456-7890
-          %ul
-            %li
-              Email:
-              %a{href: "http://pixel-industry.com/html/pocket/contact.html#"} contact@pocket.com
-            %li
-              Web:
-              %a{href: "http://pixel-industry.com/html/pocket/contact.html#"} www.pocket.com
-        .clear
+        =raw @contact_info.content
     / container_12 end
   / content-wrapper end
 / footer wrapper start

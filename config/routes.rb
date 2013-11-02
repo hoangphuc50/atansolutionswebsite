@@ -24,6 +24,8 @@ AtanSolutionsWebsite::Application.routes.draw do
   root :to => 'home#index'
   get '/about_us' => 'home#about_us'
   get '/services' => 'home#services'
+  get 'service/:id' => 'home#service'
+  resources :service
   get '/news' => 'home#news'
   get 'news/:id' => 'home#news'
   get '/projects' => 'home#projects'

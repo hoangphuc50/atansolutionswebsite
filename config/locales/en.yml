@@ -34,6 +34,13 @@ en:
       news_description: "Our through"
       contact: "Contact"
       contact_description: "Get in touch"
+    index:
+      recent_work: "Recent Work"
+      view_more: "View more"
+      latest_new: "Latest new"
+    project:
+      project: "Projects"
+      project_description: "Our amazing work"
     footer:
       copyright: "Copyright 2013 ATAN Solutions"
       social: "Follow us on Social Network"

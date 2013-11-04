@@ -20,16 +20,20 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  home: 'Home'
-  welcome: 'Welcome'
-  hello: "Hello world"
-  en: "Page english"
-  index:
-  about:
-  services:
-  service:
-  projects:
-  project:
-  news:
-  article:
-  contact:
+  front_end:
+    top_menu:
+      home: "Home"
+      home__description: "Welcome"
+      atansolutions: "About ATAN"
+      atansolutions_description: "Why choose us"
+      atansolutions_about_us: "About Us"
+      atansolutions_services: "Services"
+      our_project: "Our project"
+      our_project_description: "Our amazing work"
+      news: "News"
+      news_description: "Our through"
+      contact: "Contact"
+      contact_description: "Get in touch"
+    footer:
+      copyright: "Copyright 2013 ATAN Solutions"
+      social: "Follow us on Social Network"

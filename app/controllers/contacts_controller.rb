@@ -2,11 +2,16 @@ class ContactsController < ApplicationController
    layout "home"
    before_filter :check_language
    def check_language
+     session[:language]= Language.where(:language_code=>params[:lang]).first().id if !params[:lang].nil?
+     session[:locale]= params[:lang] if !params[:lang].nil?
+     I18n.locale = session[:locale]
      if session[:language]==nil
        @language_id=Language.where(default='true').first().id
+       session[:language]=@language_id
      else
-       @language_id=1
+       @language_id=session[:language]
      end
+     I18n.locale = Language.where(:id=>session[:language]).first().language_code
    end
   def new
     category_id=Category.where("name='contact'").first().id
@@ -35,8 +40,8 @@ class ContactsController < ApplicationController
                       :address              => 'smtp.gmail.com',
                       :port                 => '587',
                       :enable_starttls_auto => true,
-                      :user_name            => 'hoangphuc50@gmail.com',
-                      :password             => 'champions0',
+                      :user_name            => 'thongtinkhachhang@gmail.com',
+                      :password             => '665335665335',
                       :authentication       => :plain,
                       :domain               => "localhost.localdomain"
                   }

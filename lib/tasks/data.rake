@@ -138,4 +138,19 @@ namespace :data do
       puts row[0]
     end
   end
+  task :contact_data=>:environment do
+    news=[
+        [""],
+        [""],
+        [""],
+        [""],
+        [""]
+    ]
+    news.each do |row|
+      new_article=Article.create(:category_id => 4,:user_id=>3,:images=>"",:priority=>1,:enable=>true)
+      ArticleLanguage.create(:article_id=>new_article.id,:language_id=>1,:title=>row[0],:short_description =>"Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. isl ut aliquip ex ea commodo ",:content=>"")
+      puts row[0]
+    end
+
+  end
 end

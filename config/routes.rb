@@ -13,6 +13,8 @@ AtanSolutionsWebsite::Application.routes.draw do
     resources :category_languages
     resources :sessions, only: [:new, :create, :destroy]
     resources :dashboard
+    resources :articles
+    resources :article_languages
 
     match '/signin',  to: 'sessions#new',         via: 'get'
     match '/signout', to: 'sessions#destroy',     via: 'delete'
@@ -23,6 +25,8 @@ AtanSolutionsWebsite::Application.routes.draw do
   root :to => 'home#index'
   get '/about_us' => 'home#about_us'
   get '/services' => 'home#services'
+  get 'service/:id' => 'home#service'
+  resources :service
   get '/news' => 'home#news'
   get 'news/:id' => 'home#news'
   get '/projects' => 'home#projects'

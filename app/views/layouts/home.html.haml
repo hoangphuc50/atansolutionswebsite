@@ -80,11 +80,29 @@
               = link_to language.name, :lang=>language.language_code
         / main navigation end
         / responsive navigation start
+        :javascript
+          jQuery(function(){
+          jQuery('select#menu-menu-1').bind('change', function ()
+            {
+              var url = jQuery(this).val(); // get selected value
+              if (url) { // require a URL
+                  window.location = url; // redirect
+              }
+              return false;
+            });
+          });
         .menu-menu-container
           %select#menu-menu-1.menu.dropdown-menu
             %option.blank{value: ""} – Main Menu –
-            %option.menu-item{value: ""} Home
-            %option.menu-item{value: ""} - Home Page 2
+            %option.menu-item{value: "/"} Home
+            %option.menu-item{value: "/about_us"} About Atansolutions
+            %option.menu-item{value: "/about_us"} - About us
+            %option.menu-item{value: "/services"} - Services
+            %option.menu-item{value: "/projects"} Projects
+            %option.menu-item{value: "/news"} News
+            %option.menu-item{value: "/contact"} Contact
+
+
         / responsive navigation end
       / nav container end
   / header end

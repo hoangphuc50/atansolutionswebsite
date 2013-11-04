@@ -1,34 +1,50 @@
 class Admin::ArticlesController < Admin::ApplicationController
   before_action :signed_in_user
-
+  layout 'admin'
 
   def index
-    @category = Category.order('name ASC').all
+    unless params[:id].blank?
+      @articles = Article.where('category_id = ?',params[:id]).all
+      respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: @articles }
+      end
+    end
   end
 
   # GET /categories/1
   # GET /categories/1.json
   def show
+    @article = Article.find(params[:id])
   end
 
   # GET /categories/new
   def new
-    @category = Category.new
+    @article = Article.new
     #@category_language=CategoryLanguage.new
   end
 
   # GET /categories/1/edit
   def edit
+    @article = Article.find(params[:id])
     #@category_language=CategoryLanguage.find(params[:id],params[:language_id])
   end
 
   # POST /categories
   # POST /categories.json
   def create
-    @category = Category.new(category_params)
+    @article = Article.new(article_params)
+    uploaded_io = ""
+    @article.images = uploaded_io
+    unless params[:article][:images].blank?
+      uploaded_io = params[:article][:images]
+      DataFile.save(uploaded_io)
+      @article.images = uploaded_io.original_filename
+    end
 
-    if @category.save
-      flash[:notice] = I18n.t('admin.categories.new.success', :name => @category.name)
+    @article.user_id = current_user.id
+    if @article.save
+      flash[:notice] = I18n.t('admin.articles.new.success', :name => @article.name)
       redirect_to :action => :index
     else
       render :action => :new
@@ -38,21 +54,33 @@ class Admin::ArticlesController < Admin::ApplicationController
   # PATCH/PUT /categories/1
   # PATCH/PUT /categories/1.json
   def update
-    if @category.update(category_params)
-      flash[:notice] = I18n.t('admin.categories.edit.success', :name => @category.name)
+    @article = Article.find(params[:id])
+    images = ""
+    unless params[:article][:images].blank?
+      uploaded_io = params[:article][:images]
+      DataFile.save(uploaded_io)
+      images = uploaded_io.original_filename
+    end
+    @article.user_id = current_user.id
+    @article.name = params[:article][:name]
+    @article.category_id = params[:article][:category_id]
+    @article.enable = params[:article][:enable]
+    if @article.update_attributes(:id => params[:id])
+      flash[:notice] = I18n.t('admin.articles.edit.success', :name => @article.name)
       redirect_to :action => :index
     else
-      render :action => :new
+      render :action => :edit
     end
   end
 
   # DELETE /categories/1
   # DELETE /categories/1.json
   def destroy
-    if @category.destroy
-      flash[:notice] = I18n.t('admin.categories.destroy.success', :name => @category.name)
+    @article = Article.find(params[:id])
+    if @article.destroy
+      flash[:notice] = I18n.t('admin.articles.destroy.success', :name => @article.name)
     else
-      flash[:notice] = I18n.t('admin.categories.destroy.failure', :name => @category.name)
+      flash[:notice] = I18n.t('admin.articles.destroy.failure', :name => @article.name)
     end
 
     redirect_to :action => :index
@@ -60,13 +88,13 @@ class Admin::ArticlesController < Admin::ApplicationController
 
   private
   # Use callbacks to share common setup or constraints between actions.
-  def set_category
-    @category = Category.find(params[:id])
+  def set_article
+    @article = Article.find(params[:id])
     #@category_language=CategoryLanguage.where(:language_id=>params[:language_id],:category_id=>params[:category_id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
-  def category_params
-    params.require(:category).permit(:name, :parent_id)
+  def article_params
+    params.require(:article).permit(:name, :category_id, :images, :enable)
   end
 end

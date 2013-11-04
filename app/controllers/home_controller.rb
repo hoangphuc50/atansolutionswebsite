@@ -13,9 +13,14 @@ class HomeController < ActionController::Base
   def index
     category_index=Category.where("name='index'").first().id
     category_services=Category.where("name='services'").first().id
+    category_news=Category.where("name='news'").first().id
+    category_projects=Category.where("name='projects'").first().id
     @slide=select_html_article(category_index,1)
     @about_us_slide=select_html_article(category_index,2)
     @comment_slide= select_html_article(category_index,3)
+    @top_3_services=ArticleLanguage.includes({article: :category},:language).where("language_id=#{@language_id} and category_id=#{category_services} and articles.priority=1").order(:created_at => :desc).take(3)
+    @top_5_article=ArticleLanguage.includes({article: :category},:language).where("language_id=#{@language_id} and categories.parent_id=#{category_news}").order(:created_at => :desc).take(5)
+    @top_4_projects=ArticleLanguage.includes({article: :category},:language).where("language_id=#{@language_id} and categories.parent_id=#{category_projects}").order(:created_at => :desc).take(4)
     #@services=ArticleLanguage.includes(:article,:language).where("language_id=#{@language_id} and articles.category_id=#{category_services} and articles.priority=1").take(3).content
   end
   def projects
@@ -40,6 +45,11 @@ class HomeController < ActionController::Base
     @about_my_services=select_html_article(category_services,99)
     @all_services=ArticleLanguage.includes(:article,:language).where("language_id=#{@language_id} and articles.category_id=#{category_services} and articles.priority=1").all
     @slide_page_services=select_html_article(category_services,100)
+  end
+  def service
+    service_category_id=Category.where("name='services'").first().id
+    @service_detail=ArticleLanguage.includes(:article,:language).where("language_id=#{@language_id} and id=#{params[:id]}").first()
+    @news_category_all=CategoryLanguage.includes(:category).where("language_id=#{@language_id} and categories.parent_id=#{service_category_id}")
   end
   def news
     news_category_id=Category.where("name='news'").first().id

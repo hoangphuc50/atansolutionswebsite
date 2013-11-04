@@ -33,12 +33,12 @@ class Admin::LanguagesController < Admin::ApplicationController
   # POST /languages
   # POST /languages.json
   def create
-    if language_params[:default] ='true'
-      Language.update_all(:default => false)
-    end
+
     @language = Language.new(language_params)
     if @language.save
-      flash[:notice] = I18n.t('admin.languages.new.success', :name => @language.name)
+      if language_params[:default] ='true'
+        Language.where(:default  =>true).where("id != #{@language[:id]}").first().update_attributes(:default => false)
+      end
       redirect_to :action => :index
     else
       render :action => :new
@@ -48,14 +48,13 @@ class Admin::LanguagesController < Admin::ApplicationController
   # PATCH/PUT /languages/1
   # PATCH/PUT /languages/1.json
   def update
-    if language_params[:default] ='true'
-      Language.update_all(:default => false)
-    end
+
     if @language.update(language_params)
-      flash[:notice] = I18n.t('admin.languages.edit.success', :name => @language.name)
+      if language_params[:default] ='true'
+        Language.where(:default  =>true).where("id != #{@language[:id]}").first().update_attributes(:default => false)
+      end
       redirect_to :action => :index
     else
-      #flash[:error] = I18n.t('admin.rental_units.edit.failure')
       render :action => :edit
     end
   end
@@ -63,12 +62,11 @@ class Admin::LanguagesController < Admin::ApplicationController
   # DELETE /languages/1
   # DELETE /languages/1.json
   def destroy
-
+    if @language[:default] ='true'
+      Language.where("id != #{@language[:id]}").first().update_attributes(:default => true)
+    end
     if @language.destroy
       flash[:notice] = I18n.t('admin.languages.destroy.success', :name => @language.name)
-      if @language[:default] ='true'
-        Language.where("id != #{@language[:id]}").first().update_attributes(:default => true)
-      end
     else
       flash[:notice] = I18n.t('admin.languages.destroy.failure', :name => @language.name)
     end

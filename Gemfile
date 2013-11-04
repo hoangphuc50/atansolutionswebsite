@@ -9,8 +9,6 @@ gem 'sqlite3'
 gem 'pg'
 gem 'execjs'
 gem 'therubyracer'
-#gem 'meta_search'    # For column sort and search of tables
-gem 'ransack'
 #gem 'protected_attributes'
 
 # Use SCSS for stylesheets

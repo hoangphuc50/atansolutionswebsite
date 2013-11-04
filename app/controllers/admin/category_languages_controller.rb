@@ -54,8 +54,11 @@ class Admin::CategoryLanguagesController < Admin::ApplicationController
     else
       flash[:notice] = I18n.t('admin.categories.destroy.failure', :name => @category_language.title)
     end
-
-    redirect_to admin_category_path(:id=>@category_language.category.id)
+    if @category_language.category !=''
+      redirect_to admin_category_path(:id=>@category_language.category.id)
+    else
+      render :action => :index
+    end
   end
 
   private

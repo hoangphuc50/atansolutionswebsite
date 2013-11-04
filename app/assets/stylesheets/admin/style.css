@@ -405,9 +405,10 @@ ul.content-box-tabs li a.current {
 
 .shortcut-button {
                 border: 1px solid #ccc;
-                background: #f7f7f7 url('/assets/admin/shortcut-button-bg.gif') top left no-repeat;
+                background: #f7f7f7 url('/assets/admin/bg-menu-item-green.gif') top left no-repeat;
+                /*background: #f7f7f7 url('/assets/admin/shortcut-button-bg.gif') top left no-repeat;*/
                 display: block;
-                width: 120px;
+                /*width: 120px;*/
                 margin: 0 0 20px 0;
                 }
 
@@ -416,20 +417,25 @@ ul.content-box-tabs li a.current {
                 display:block;
                 padding: 15px 10px 15px 10px;
                 text-align: center;
-                color: #555;
-                font-size: 13px;
-                line-height: 1.3em;
+                color: #fff;
+                font-size: 13px ;
+                line-height: 0.3em;
                 }
 
 .shortcut-button span img {
                 margin-bottom: 10px;
                 }
 
-.shortcut-button:hover {
+.shortcut-button :hover {
                 background: #fff;
 				
                 }
-				
+
+.shortcut-button.current span {
+    background: #fff;
+    color: #57a000;
+
+}
 .shortcut-button span:hover {
 				color: #57a000; 
                 }

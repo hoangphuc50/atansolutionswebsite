@@ -14,26 +14,26 @@
           %th
             =language.language_code
         %th Actions
-    %tfoot
-      %tr
-        %td{:colspan => '6'}
-          .bulk-actions.align-left
-            %select{:name => 'dropdown'}
-              %option{:value => 'option1'} Choose an action...
-              %option{:value => 'option2'} Edit
-              %option{:value => 'option3'} Delete
-            %a.button{:href => '#'} Apply to selected
-          .pagination
-            %a{:href => '#', :title => 'First Page'} &laquo; First
-            %a{:href => '#', :title => 'Previous Page'} &laquo; Previous
-            %a.number{:href => '#', :title => '1'} 1
-            %a.number{:href => '#', :title => '2'} 2
-            %a.number.current{:href => '#', :title => '3'} 3
-            %a.number{:href => '#', :title => '4'} 4
-            %a{:href => '#', :title => 'Next Page'} Next &raquo;
-            %a{:href => '#', :title => 'Last Page'} Last &raquo;
-          / End .pagination
-          .clear
+    -#%tfoot
+    -#  %tr
+    -#    %td{:colspan => '6'}
+    -#      .bulk-actions.align-left
+    -#        %select{:name => 'dropdown'}
+    -#          %option{:value => 'option1'} Choose an action...
+    -#          %option{:value => 'option2'} Edit
+    -#          %option{:value => 'option3'} Delete
+    -#        %a.button{:href => '#'} Apply to selected
+    -#      .pagination
+    -#        %a{:href => '#', :title => 'First Page'} &laquo; First
+    -#        %a{:href => '#', :title => 'Previous Page'} &laquo; Previous
+    -#        %a.number{:href => '#', :title => '1'} 1
+    -#        %a.number{:href => '#', :title => '2'} 2
+    -#        %a.number.current{:href => '#', :title => '3'} 3
+    -#        %a.number{:href => '#', :title => '4'} 4
+    -#        %a{:href => '#', :title => 'Next Page'} Next &raquo;
+    -#        %a{:href => '#', :title => 'Last Page'} Last &raquo;
+    -#      / End .pagination
+    -#      .clear
     %tbody
       - @category.each do |category|
         %tr
@@ -49,9 +49,9 @@
               -if @category_language.nil?
                 = link_to(image_tag('admin/icon_add.png'), new_admin_category_language_path(:id_cate=>category.id,:id_lang=>language.id))
               -else
-                = link_to(image_tag('admin/icon_edit.gif'), edit_admin_category_language_path(@category_language))
+                = link_to(image_tag('admin/icons/pencil.png'), edit_admin_category_language_path(@category_language))
           %td
             / Icons
             = link_to(image_tag('admin/icon_view.gif'), admin_category_path(category))
             = link_to(image_tag('admin/icon_edit.gif'), edit_admin_category_path(category))
-            = link_to(image_tag('admin/icon_delete.gif'), admin_category_path(category), :confirm => 'You sure?', :method => :delete)
+            = link_to(image_tag('admin/icon_delete.gif'), admin_category_path(category), :confirm => 'Are you sure?', :method => :delete)

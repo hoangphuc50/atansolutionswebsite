@@ -8,6 +8,7 @@ class HomeController < ActionController::Base
     else
       @language_id=session[:language]
     end
+    I18n.locale = Language.where(:id=>session[:language]).first().language_code
   end
   def index
     category_index=Category.where("name='index'").first().id

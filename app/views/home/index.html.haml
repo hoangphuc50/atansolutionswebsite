@@ -6,36 +6,6 @@
     / container_12 start
     .container_12
       .grid_12{style: "margin-bottom: 0px;"}
-<<<<<<< HEAD
-        .grid_4.service.alpha
-          .icon-container
-            %a.icon-th.service-icon{href: ""}
-          %a{href: "services.htm"}
-            %h4
-              =t('hello')
-          %p
-            Lorem ipsum dolor slo onsec tueraliquet
-            Morbi nec In Curabitur lreaoreet nisl lorem in pellente pellente eget.
-            Lorem ipsum dolor slo onsec Vivamus....
-        .grid_4.service
-          .icon-container
-            %a.icon-time.service-icon{href: ""}
-          %a{href: "services.htm"}
-            %h4 Worldwide Support
-          %p
-            orem ipsum dolor slo onsec tueraliquet
-            Morbi nec In Curabitur lreaoreet nisl lorem in pellente pellente eget.
-            Lorem ipsum dolor slo onsec Vivamus....
-        .grid_4.service.omega
-          .icon-container
-            %a.icon-info-sign.service-icon{href: ""}
-          %a{href: "services.htm"}
-            %h4 Web Consulting
-          %p
-            Lorem ipsum dolor slo onsec tueraliquet
-            Morbi nec In Curabitur lreaoreet nisl lorem in pellente pellente eget.
-            Lorem ipsum dolor slo onsec Vivamus....
-=======
         -@top_3_services.each do |row|
           .grid_4.service.alpha
             .icon-container
@@ -45,7 +15,6 @@
                 =row.title
             %p
               =row.short_description.at(0..100)+"..."
->>>>>>> 5dbea567f4b245a8e6fde138e5128dcf6e61a44f
         .clear
         =raw @about_us_slide
         %article.grid_12.portfolio-box{style: "margin-bottom: 0px;"}

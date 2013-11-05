@@ -17,29 +17,29 @@ ActiveRecord::Schema.define(version: 20131102041702) do
   enable_extension "plpgsql"
 
   create_table "article_languages", force: true do |t|
-    t.integer  "article_id"
     t.integer  "language_id"
+    t.integer  "article_id"
     t.string   "title"
     t.string   "short_description"
-    t.string   "content"
+    t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "articles", force: true do |t|
-    t.string   "images"
-    t.boolean  "enable"
     t.integer  "category_id"
-    t.integer  "priority"
     t.integer  "user_id"
+    t.string   "images"
+    t.integer  "priority"
+    t.boolean  "enable"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
   end
 
   create_table "categories", force: true do |t|
-    t.string   "name"
     t.integer  "parent_id"
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -54,10 +54,10 @@ ActiveRecord::Schema.define(version: 20131102041702) do
 
   create_table "languages", force: true do |t|
     t.string   "name"
-    t.string   "description"
-    t.string   "language_code"
     t.boolean  "enable"
     t.boolean  "default"
+    t.string   "language_code"
+    t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

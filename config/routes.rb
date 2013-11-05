@@ -11,11 +11,12 @@ AtanSolutionsWebsite::Application.routes.draw do
     resources :articles
     resources :categories
     resources :category_languages
-    resources :sessions, only: [:new, :create, :destroy]
+    resources :sessions
     resources :dashboard
     resources :articles
     resources :article_languages
-
+    match '/lostpassword',  to: 'sessions#lostpassword',         via: 'get'
+    match '/lostpassword',  to: 'sessions#sendlostpassword',         via: 'post'
     match '/signin',  to: 'sessions#new',         via: 'get'
     match '/signout', to: 'sessions#destroy',     via: 'delete'
     match '/change_password',  to: 'profiles#index',         via: 'get'

@@ -20,22 +20,6 @@
     %tfoot
       %tr
         %td{:colspan => '6'}
-          .bulk-actions.align-left
-            %select{:name => 'dropdown'}
-              %option{:value => 'option1'} Choose an action...
-              %option{:value => 'option2'} Edit
-              %option{:value => 'option3'} Delete
-            %a.button{:href => '#'} Apply to selected
-          .pagination
-            %a{:href => '#', :title => 'First Page'} &laquo; First
-            %a{:href => '#', :title => 'Previous Page'} &laquo; Previous
-            %a.number{:href => '#', :title => '1'} 1
-            %a.number{:href => '#', :title => '2'} 2
-            %a.number.current{:href => '#', :title => '3'} 3
-            %a.number{:href => '#', :title => '4'} 4
-            %a{:href => '#', :title => 'Next Page'} Next &raquo;
-            %a{:href => '#', :title => 'Last Page'} Last &raquo;
-          / End .pagination
           .clear
     %tbody
       - unless @articles.nil?

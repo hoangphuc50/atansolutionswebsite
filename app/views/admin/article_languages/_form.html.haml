@@ -1,3 +1,7 @@
+
+- if flash[:notice]
+  %div.flash-notice= flash[:notice]
+  = yield
 - if @article_language.errors.any?
   #error_explanation.notification.information.png_bg
     %div.flash-notice
@@ -12,12 +16,12 @@
   %p
     %label
     = f.label :article
-    = f.select :article_id, Article.order('name ASC').all.collect {|c| [c.name, c.id]},:selected =>"#{params[:id_arti] ? params[:id_arti] : @article_language.article.try(:id)}" ,:disabled => true
+    = f.select :article_id, options_for_select(Article.order('name ASC').all.collect {|c| [c.name, c.id]},(params[:action] == 'edit') ? params[:id_arti] : params[:id] ), :disabled => true
     -#= f.select :article_id, options_from_collection_for_select(article.order('name ASC'), :id, :name, params[:id_cate] ? params[:id_cate] : @article_language.article.try(:id)), :disabled => true, :prompt => 'Select article'
   %p
     %label
     = f.label :language
-    = f.select :language_id, Language.order('name ASC').all.collect {|c| [c.name, c.id]},:selected =>"#{params[:id_lang]? params[:id_lang] : @article_language.language.try(:id)}"
+    = f.select :language_id, options_for_select(Language.order('name ASC').all.collect {|c| [c.name, c.id]},@article_language.language.try(:id))
   %p
     %label
     = f.label :title
@@ -30,4 +34,8 @@
   %p
     %label
     = f.label :content
-    = f.text_field :content, :class => 'text-input large-input'
+    -#= f.text_field :content, :class => 'text-input large-input'
+    = f.text_area :content, :class => 'ckeditor'
+    -#%div#editor
+
+

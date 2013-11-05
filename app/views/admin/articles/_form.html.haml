@@ -1,5 +1,6 @@
 = content_for :javascripts do
   = javascript_include_tag 'admin/languages_filter'
+
 - if @article.errors.any?
   #error_explanation.notification.information.png_bg
     %div.flash-notice
@@ -19,7 +20,7 @@
   %p
     %label
     = f.label :category_id
-    = f.select :category_id, Category.all.collect {|c| [c.name, c.id]}
+    = f.select :category_id, options_for_select(Category.all.collect {|c| [c.name, c.id]},params[:id_cate])
 
   %p
     %label

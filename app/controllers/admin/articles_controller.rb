@@ -3,8 +3,8 @@ class Admin::ArticlesController < Admin::ApplicationController
   layout 'admin'
 
   def index
-    unless params[:id].blank?
-      @articles = Article.where('category_id = ?',params[:id]).all
+    unless params[:id_cate].blank?
+      @articles = Article.where('category_id = ?',params[:id_cate]).all
       respond_to do |format|
         format.html # index.html.erb
         format.json { render json: @articles }
@@ -46,9 +46,10 @@ class Admin::ArticlesController < Admin::ApplicationController
     @article.user_id = current_user.id
     if @article.save
       flash[:notice] = I18n.t('admin.articles.new.success', :name => @article.name)
-      redirect_to :action => :index
+      redirect_to admin_articles_path(:id_cate => params[:id_cate])
+      #redirect_to :action => :index, :id_cate=> params[:id_cate]
     else
-      render :action => :new
+      render :action => :new,:id_cate=> params[:id_cate]
     end
   end
 
@@ -68,9 +69,9 @@ class Admin::ArticlesController < Admin::ApplicationController
     @article.enable = params[:article][:enable]
     if @article.update_attributes(:id => params[:id])
       flash[:notice] = I18n.t('admin.articles.edit.success', :name => @article.name)
-      redirect_to :action => :index
+      redirect_to admin_articles_path(:id_cate => params[:id_cate])
     else
-      render :action => :edit
+      render :action => :edit,:id_cate=> params[:id_cate]
     end
   end
 
@@ -84,7 +85,7 @@ class Admin::ArticlesController < Admin::ApplicationController
       flash[:notice] = I18n.t('admin.articles.destroy.failure', :name => @article.name)
     end
 
-    redirect_to :action => :index
+    redirect_to admin_articles_path(:id_cate => @article.category.id)
   end
 
   private

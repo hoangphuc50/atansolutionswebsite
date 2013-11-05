@@ -6,6 +6,7 @@ class Admin::UsersController < Admin::ApplicationController
   # GET /users.json
   def index
     @users = User.all
+    #@users = User.all
   end
   # GET /users/1
   # GET /users/1.json

@@ -1,24 +1,48 @@
 $(document).ready(function(){
-	
+
+    //Get current menu
+//        $('#main-nav li ul li a').click(
+//            function () {
+//                $(this).parent().parent().parent().find("a").addClass('current');
+//            }
+//        )
+        $('#main-nav li a').each(function() {
+            if(this.href.trim() == window.location)
+                $(this).addClass("current");
+        });
+        $('#main-nav li ul li a').each(function() {
+            if(this.href.trim() == window.location)
+                $(this).addClass("current");
+        });
+        $('#main-content ul li a.shortcut-button').each(function() {
+            if(this.href.trim() == window.location)
+                $(this).addClass("current");
+        });
+//        $('#main-nav li a').each(function() {
+//            if(this.href.trim() == window.location)
+//                $(this).addClass("current");
+//        });
 	//Sidebar Accordion Menu:
 		
-		$("#main-nav li ul").hide(); // Hide all sub menus
-		$("#main-nav li a.current").parent().find("ul").slideToggle("slow"); // Slide down the current menu item's sub menu
-		
-		$("#main-nav li a.nav-top-item").click( // When a top menu item is clicked...
-			function () {
-				$(this).parent().siblings().find("ul").slideUp("normal"); // Slide up all sub menus except the one clicked
-				$(this).next().slideToggle("normal"); // Slide down the clicked sub menu
-				return false;
-			}
-		);
-		
-		$("#main-nav li a.no-submenu").click( // When a menu item with no sub menu is clicked...
-			function () {
-				window.location.href=(this.href); // Just open the link instead of a sub menu
-				return false;
-			}
-		); 
+//		$("#main-nav li ul").hide(); // Hide all sub menus
+//		$("#main-nav li a.current").parent().find("ul").slideToggle("slow"); // Slide down the current menu item's sub menu
+//
+//		$("#main-nav li a.nav-top-item").click( // When a top menu item is clicked...
+//			function () {
+//				$(this).parent().siblings().find("ul").slideUp("normal"); // Slide up all sub menus except the one clicked
+//				$(this).next().slideToggle("normal"); // Slide down the clicked sub menu
+//                $(this).addClass("current");
+//                $(this).parent().siblings().find("a").removeClass('current');
+//				return false;
+//			}
+//		);
+//
+//		$("#main-nav li a.no-submenu").click( // When a menu item with no sub menu is clicked...
+//			function () {
+//				window.location.href=(this.href); // Just open the link instead of a sub menu
+//				return false;
+//			}
+//		);
 
     // Sidebar Accordion Menu Hover Effect:
 		

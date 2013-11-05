@@ -2,12 +2,15 @@ class HomeController < ActionController::Base
   before_filter :check_language
   def check_language
     session[:language]= Language.where(:language_code=>params[:lang]).first().id if !params[:lang].nil?
+    session[:locale]= params[:lang] if !params[:lang].nil?
+    I18n.locale = session[:locale]
     if session[:language]==nil
       @language_id=Language.where(default='true').first().id
       session[:language]=@language_id
     else
       @language_id=session[:language]
     end
+    I18n.locale = Language.where(:id=>session[:language]).first().language_code
   end
   def index
     category_index=Category.where("name='index'").first().id
@@ -26,12 +29,19 @@ class HomeController < ActionController::Base
     category_projects=Category.where("name='projects'").first().id
     @child_projects_category=CategoryLanguage.includes(:category).where("language_id=#{@language_id} and categories.parent_id=#{category_projects}")
     if params[:id]!=nil
-      @projects_list=ArticleLanguage.includes({article: :category},:language).where("language_id=#{@language_id} and articles.category_id=#{params[:id]}").all
+      @projects_list=ArticleLanguage.includes({article: :category},:language).where("language_id=#{@language_id} and articles.category_id=#{params[:id]}")
     else
-      @projects_list=ArticleLanguage.includes({article: :category},:language).where("language_id=#{@language_id} and categories.parent_id=#{category_projects}").all
+      @projects_list=ArticleLanguage.includes({article: :category},:language).where("language_id=#{@language_id} and categories.parent_id=#{category_projects}")
     end
-
-
+    page_size=9
+    if params[:page]==nil
+      page=1
+    else
+      page=params[:page]
+    end
+    @total_page= Array.new(@projects_list.count / page_size +1)
+    offset=(page.to_i*page_size.to_i)- page_size.to_i
+    @projects_list=@projects_list.limit(page_size).offset(offset)
     #@projects_list_display=@projects_list.paginate(:page => params[:page])
   end
   def project

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
 //
@@ -14,3 +15,5 @@
 //= require jquery_ujs
 //= require_tree .
 //= require ckeditor/ckeditor
+=======
+>>>>>>> 1cfe813e7bd879937369bc6c88067885f9afdad7

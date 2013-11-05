@@ -8,6 +8,7 @@ AtanSolutionsWebsite::Application.routes.draw do
     root to: 'dashboard#index'
     resources :users
     resources :languages
+    resources :articles
     resources :categories
     resources :category_languages
     resources :sessions, only: [:new, :create, :destroy]

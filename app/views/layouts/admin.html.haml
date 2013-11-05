@@ -37,23 +37,15 @@
           %ul#main-nav
             / Accordion Menu
             %li
-              %a.nav-top-item.current{:href => "#"}
-                / Add the class "current" to current menu item
-                Home admin
-              %ul
-                %li
-                  %a{:href => admin_articles_path} Write a new Article
-                %li
-                  %a{:href => "#"} Manage Articles
-                / Add class "current" to sub menu items also
-                %li
-                  %a{:href => "#"} Manage Comments
-                %li
-                  %a{:href => admin_categories_path} Manage Categories
-                %li
-                  %a{:href => admin_users_path} Manage Users
-                %li
-                  %a{:href => admin_languages_path} Manage Languages
+              - @category=CategoryLanguage.find_by_sql("select * from categories ca join category_languages cl on ca.id=cl.category_id join languages l on l.id=cl.language_id where ca.parent_id is null and l.default=true")
+              - @category.each do |category|
+                %a.nav-top-item{:href => "/admin/categories/#{category.category_id}"} #{category.title}
+                %ul
+                  - @subcategory=CategoryLanguage.find_by_sql("select * from categories ca join category_languages cl on ca.id=cl.category_id join languages l on l.id=cl.language_id where ca.parent_id =#{category.category_id} and l.default=true ")
+                  - @subcategory.each do |subcategory|
+                    %li
+                      %a{:href => "/admin/categories/#{subcategory.category_id}"} #{subcategory.title}
+
 
           / End #main-nav
           #messages{:style => "display: none"}
@@ -112,35 +104,17 @@
         %p#page-intro What would you like to do?
         %ul.shortcut-buttons-set
           %li
-            %a.shortcut-button{:href => "#"}
-              %span
-                %img{:alt => "icon", :src => "/assets/admin/icons/pencil_48.png"}/
-                %br/
-                Write an Article
+            %a.shortcut-button{:href => admin_articles_path}
+              %span Manage Articles
           %li
-            %a.shortcut-button{:href => "#"}
-              %span
-                %img{:alt => "icon", :src => "/assets/admin/icons/paper_content_pencil_48.png"}/
-                %br/
-                Create a New Page
+            %a.shortcut-button{:href => admin_categories_path}
+              %span Manage Categories
           %li
-            %a.shortcut-button{:href => "#"}
-              %span
-                %img{:alt => "icon", :src => "/assets/admin/icons/image_add_48.png"}/
-                %br/
-                Upload an Image
+            %a.shortcut-button{:href => admin_users_path}
+              %span Manage Users
           %li
-            %a.shortcut-button{:href => "#"}
-              %span
-                %img{:alt => "icon", :src => "/assets/admin/icons/clock_48.png"}/
-                %br/
-                Add an Event
-          %li
-            %a.shortcut-button{:href => "#messages", :rel => "modal"}
-              %span
-                %img{:alt => "icon", :src => "/assets/admin/icons/comment_48.png"}/
-                %br/
-                Open Modal
+            %a.shortcut-button{:href => admin_languages_path}
+              %span Manage Languages
         / End .shortcut-buttons-set
         .clear
         / End .clear

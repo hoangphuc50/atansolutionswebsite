@@ -27,12 +27,11 @@
     = javascript_include_tag 'home/jquery.nivo.slider'
 %body.pattern-default.homepage
   %header#header.clearfix{style: "display: block; top: 0px;"}
-    %section.top-bar-wrapper{style: "height: 3px;"}
-      .top-bar{style: "display: none;"}
-        %a.close-frame{href: "#"} Close Frame
-        .content-right
-          %a.register{href: ""} Join Now
-          %a.contact-info Call us: 123 456 789
+    %div{style: "position:absolute; top:3px;right:30px"}
+      %span{style:"font-size:11px;font-weight:bold"}Choose language:
+      -Language.where(enable: true).all.each do |row|
+        = link_to(row.name+" | ", "?lang=#{row.language_code}")
+
     %section#header-inner.clearfix
       / logo start
       %section#logo
@@ -47,37 +46,43 @@
             %li.menu-item.current-menu-parent
               %a{href: "/"}
                 %i.icon-nav.icon-home>
-                Home
-              %span Welcome
+                =I18n.t("front_end.top_menu.home")
+              %span
+                =I18n.t("front_end.top_menu.home__description")
             %li.menu-item{id: ""}
               %a{href: "/about_us"}
                 %i.icon-nav.icon-columns>
-                ATAN Solutions
-              %span Why choose us
+                =I18n.t("front_end.top_menu.atansolutions")
+              %span
+                =I18n.t("front_end.top_menu.atansolutions_description")
               %ul.sub-menu
                 %li.menu-item{id: ""}
-                  %a{href: "/about_us"} About Us
+                  %a{href: "/about_us"}
+                    =I18n.t("front_end.top_menu.atansolutions_about_us")
                 %li.menu-item{id: ""}
-                  %a{href: "/services"} Services
+                  %a{href: "/services"}
+                    =I18n.t("front_end.top_menu.atansolutions_services")
             %li.menu-item{id: ""}
               %a{href: "/projects"}
                 %i.icon-nav.icon-picture>
-                Our Project
-              %span Our amazing work
+                =I18n.t("front_end.top_menu.our_project")
+              %span
+                =I18n.t("front_end.top_menu.our_project_description")
             %li.menu-item{id: ""}
               %a{href: "/news"}
                 %i.icon-nav.icon-book>
-                News
-              %span Our thought
+                =I18n.t("front_end.top_menu.news")
+              %span
+                =I18n.t("front_end.top_menu.news_description")
             %li.menu-item{id: ""}
               %a{href: "/contact"}
                 %i.icon-nav.icon-envelope>
-                Contact
-              %span Get in touch
+                =I18n.t("front_end.top_menu.contact")
+              %span
+                =I18n.t("front_end.top_menu.contact_description")
             -#= link_to(image_tag('admin/icon_view.gif'), '?lang_id=2')
             -#= link_to(image_tag('admin/icon_view.gif'), '?lang_id=2')
-            = link_to('Vietnamese', '?lang=vi')
-            = link_to('English', '?lang=en')
+
         / main navigation end
         / responsive navigation start
         :javascript
@@ -116,10 +121,12 @@
     %section.copyright-container
       .copyright.container_12
         .grid_6.copy-info
-          %p Copyright 2013 ATAN Solutions
+          %p
+            =I18n.t("front_end.footer.copyright")
         .grid_6.footer-social
           / social icons start
-          %p{style: "\r\n    text-align: right;\r\n    font-size: 12px;\r\n"} Follow us on Social Network
+          %p{style: "\r\n    text-align: right;\r\n    font-size: 12px;\r\n"}
+            =I18n.t("front_end.footer.social")
           %ul
             %li
               %a{href: "", target: "_BLANK", title: "dribbble"}

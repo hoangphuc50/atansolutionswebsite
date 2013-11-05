@@ -19,28 +19,21 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
-en:
+vi:
   front_end:
     top_menu:
-      home: "Home"
+      home: "Trang chủ"
       home__description: "Welcome"
-      atansolutions: "About ATAN"
-      atansolutions_description: "Why choose us"
-      atansolutions_about_us: "About Us"
-      atansolutions_services: "Services"
-      our_project: "Our project"
-      our_project_description: "Our amazing work"
-      news: "News"
-      news_description: "Our through"
-      contact: "Contact"
-      contact_description: "Get in touch"
-    index:
-      recent_work: "Recent Work"
-      view_more: "View more"
-      latest_new: "Latest new"
-    project:
-      project: "Projects"
-      project_description: "Our amazing work"
+      atansolutions: "Atansolutions"
+      atansolutions_description: "Chúng tôi là ai"
+      atansolutions_about_us: "Giới thiệu"
+      atansolutions_services: "Dịch vụ"
+      our_project: "Dự án"
+      our_project_description: "Khách hàng"
+      news: "Tin tức"
+      news_description: "xem thông tin"
+      contact: "Liên hệ"
+      contact_description: "với chúng tôi"
     footer:
-      copyright: "Copyright 2013 ATAN Solutions"
-      social: "Follow us on Social Network"
+      copyright: "Bản quyền thuộc về ATAN Solutions 2013"
+      social: "Theo dõi chúng tôi trên mạng xã hội"

@@ -4,7 +4,11 @@
 jQuery ($) ->
   $('.category_select').live('change',->
     if $(this).val() != ""
-      window.location.href = "articles?id=" + $(this).val()
+      window.location.href = "articles?id_cate=" + $(this).val()
     else
       window.location.href = "articles"
   )
+
+#  Editor
+
+

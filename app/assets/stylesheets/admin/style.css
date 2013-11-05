@@ -437,7 +437,7 @@ ul.content-box-tabs li a.current {
 
 }
 .shortcut-button span:hover {
-				color: #57a000; 
+				color: #57a000;
                 }
 
 ul.shortcut-buttons-set li {
@@ -628,7 +628,7 @@ body#login {
 #login-wrapper #login-content p#remember-password {
 				float: right;
 				}
-				
+
 #login-wrapper #login-content p#remember-password input {
 				float: none;
 				width: auto;
@@ -636,7 +636,7 @@ body#login {
 				background: none;
 				margin: 0 10px 0 0;
 				}
-				
+
 #login-wrapper #login-content p .button {
 				width: auto;
 				margin-top: 20px;

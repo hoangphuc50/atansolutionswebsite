@@ -42,7 +42,7 @@ class Admin::UsersController < Admin::ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    if @users.update(user_params)
+    if @users.update(user_param)
       flash[:notice] = I18n.t('admin.users.edit.success', :name => @users.email)
       redirect_to :action => :index
     else
@@ -75,7 +75,10 @@ class Admin::UsersController < Admin::ApplicationController
     params.require(:user).permit(:name, :email, :password,
                                  :password_confirmation)
   end
-
+  private
+  def user_param
+    params.require(:user).permit(:name, :email)
+  end
   # Before filters
 
   def signed_in_user

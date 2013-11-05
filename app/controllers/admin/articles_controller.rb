@@ -16,6 +16,7 @@ class Admin::ArticlesController < Admin::ApplicationController
   # GET /categories/1.json
   def show
     @article = Article.find(params[:id])
+
   end
 
   # GET /categories/new

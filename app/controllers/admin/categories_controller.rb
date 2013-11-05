@@ -11,6 +11,16 @@ class Admin::CategoriesController < Admin::ApplicationController
   # GET /categories/1
   # GET /categories/1.json
   def show
+    @articles = Article.where('category_id = ?',params[:id])
+    page_size=5
+    if params[:page]==nil
+      page=1
+    else
+      page=params[:page]
+    end
+    @total_page= Array.new(@articles.count / page_size +1)
+    offset=(page.to_i*page_size.to_i)- page_size.to_i
+    @articles=@articles.limit(page_size).offset(offset)
   end
 
   # GET /categories/new

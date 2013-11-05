@@ -549,13 +549,13 @@ website:   	http://www.themepunch.com
     background: -webkit-linear-gradient(top, #ededed, #7e7e7e);
 
     /* Firefox 3.6+ */
-    background: -moz-linear-gradient(top, #ededed,, #7e7e7e);
+    background: -moz-linear-gradient(top, #ededed, #7e7e7e);
 
     /* IE 10 */
-    background: -ms-linear-gradient(top, #ededed,, #7e7e7e);
+    background: -ms-linear-gradient(top, #ededed, #7e7e7e);
 
     /* Opera 11.10+ */
-    background: -o-linear-gradient(top, #ededed,, #7e7e7e);
+    background: -o-linear-gradient(top, #ededed, #7e7e7e);
 }
 
 .tp-button.pi_color_style:hover{

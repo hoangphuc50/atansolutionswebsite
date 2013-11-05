@@ -25,11 +25,6 @@ class Admin::UsersController < Admin::ApplicationController
   # POST /users
   # POST /users.json
   def create
-=begin
-    rezzcard_user_params = User.get_rezzcard_user_params(params[:user])
-    user_params = User.get_compass_user_params(params[:user])
-    user_params["username"] = user_params["email"]
-=end
     @users = User.new(user_params)
     if @users.save
       flash[:notice] = I18n.t('admin.users.new.success', :name => @users.email)
@@ -38,7 +33,14 @@ class Admin::UsersController < Admin::ApplicationController
       render :action => :new
     end
   end
-
+  def resetpassword
+    @users = User.find(params[:id])
+    if @users.update_attributes(:password => '1234567',:password_confirmation=>'1234567')
+      redirect_to admin_user_path(@users)
+    else
+      redirect_to admin_user_path(@users)
+    end
+  end
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update

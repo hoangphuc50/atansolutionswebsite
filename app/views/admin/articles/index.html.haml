@@ -5,13 +5,24 @@
   %label
     = label_tag :category
     %select{:id => "cbx_category", :class => "category_select",}
-      %option Select category
+      %option select Category
       -Category.where("parent_id IS NULL").each do |main_category|
-        %option{value: main_category.id}
-          =main_category.name
-        -Category.where("parent_id=#{main_category.id}").each do |child_category|
-          %option{value: child_category.id}
-            = "-- "+child_category.name
+        - if main_category.id.to_s().hash == params[:id_cate].hash
+          %option{value: main_category.id, :selected => params[:id_cate]}
+            =main_category.name
+          -Category.where("parent_id=#{main_category.id}").each do |child_category|
+            %option{value: child_category.id}
+              = "-- "+ child_category.name
+        - else
+          %option{value: main_category.id}
+            =main_category.name
+          -Category.where("parent_id=#{main_category.id}").each do |child_category|
+            - if child_category.id.to_s().hash == params[:id_cate].hash
+              %option{value: child_category.id, :selected=> params[:id_cate]}
+                = "-- "+child_category.name
+            - else
+              %option{value: child_category.id}
+                = "-- "+child_category.name
     -#= select_tag :category_id,
     -#options_for_select(Category.where("parent_id IS NULL").all.collect{|b| [b.name,b.id]},params[:id_cate]),
     -#  :id => "cbx_category", :class => "category_select", :prompt => "Select category"

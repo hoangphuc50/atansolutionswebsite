@@ -44,18 +44,19 @@ class Admin::UsersController < Admin::ApplicationController
                             <h3>Email: #{@users.email}</h3>
                             <h3>New password: #{p}</h3>
                             <h3>Date: #{Date.today}</h3></body></html>",
-                    :via => :smtp,
-                    :via_options => {
-                        :address              => 'smtp.gmail.com',
-                        :port                 => '587',
-                        :enable_starttls_auto => true,
-                        :user_name            => 'thongtinkhachhang@gmail.com',
-                        :password             => '665335665335',
-                        :authentication       => :plain,
-                        :domain               => "localhost.localdomain"
-                    }
-                })
-      flash[:error] = 'Reset password successfull !'
+                      :via => :smtp,
+                      :via_options => {
+                          :address              => 'smtp.gmail.com',
+                          :port                 => '587',
+                          :enable_starttls_auto => true,
+                          :user_name            => 'thongtinkhachhang@gmail.com',
+                          :password             => '665335665335',
+                          :authentication       => :plain,
+                          :domain               => "localhost.localdomain"
+                      }
+                  })
+        flash[:error] = 'Send to administrator successfull !'
+      end
       redirect_to admin_user_path(@users)
     else
       flash[:error] = 'Reset password error !'

@@ -15,6 +15,7 @@ AtanSolutionsWebsite::Application.routes.draw do
     resources :dashboard
     resources :articles
     resources :article_languages
+    match '/resetpassword',  to: 'users#resetpassword',         via: 'get'
     match '/lostpassword',  to: 'sessions#lostpassword',         via: 'get'
     match '/lostpassword',  to: 'sessions#sendlostpassword',         via: 'post'
     match '/signin',  to: 'sessions#new',         via: 'get'

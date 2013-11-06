@@ -25,11 +25,6 @@ class Admin::UsersController < Admin::ApplicationController
   # POST /users
   # POST /users.json
   def create
-=begin
-    rezzcard_user_params = User.get_rezzcard_user_params(params[:user])
-    user_params = User.get_compass_user_params(params[:user])
-    user_params["username"] = user_params["email"]
-=end
     @users = User.new(user_params)
     if @users.save
       flash[:notice] = I18n.t('admin.users.new.success', :name => @users.email)
@@ -38,7 +33,35 @@ class Admin::UsersController < Admin::ApplicationController
       render :action => :new
     end
   end
-
+  def resetpassword
+    @users = User.find(params[:id])
+    if @users.update_attributes(:password => '1234567',:password_confirmation=>'1234567')
+      if user
+        Pony.mail({
+                      :from =>"noreply@atansolutions.com",
+                      :to => @users.email,
+                      :subject => "New password for atansolutions.com",
+                      :html_body => "<html><body><h1>New password</h1>
+                            <h3>Email: #{@users.email}</h3>
+                            <h3>Pass: 1234567</h3>
+                            <h3>Date: #{Date.today}</h3></body></html>",
+                      :via => :smtp,
+                      :via_options => {
+                          :address              => 'smtp.gmail.com',
+                          :port                 => '587',
+                          :enable_starttls_auto => true,
+                          :user_name            => 'thongtinkhachhang@gmail.com',
+                          :password             => '665335665335',
+                          :authentication       => :plain,
+                          :domain               => "localhost.localdomain"
+                      }
+                  })
+        flash[:error] = 'Send to administrator successfull !'
+      redirect_to admin_user_path(@users)
+    else
+      redirect_to admin_user_path(@users)
+    end
+  end
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update

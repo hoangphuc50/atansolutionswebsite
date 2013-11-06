@@ -5,7 +5,7 @@
   %label
     = label_tag :category
     %select{:id => "cbx_category", :class => "category_select",}
-      %option select Category
+      %option{value: "0"} select Category
       -Category.where("parent_id IS NULL").each do |main_category|
         - if main_category.id.to_s().hash == params[:id_cate].hash
           %option{value: main_category.id, :selected => params[:id_cate]}

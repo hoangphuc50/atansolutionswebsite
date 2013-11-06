@@ -25,7 +25,6 @@
     = f.label :category_id
     -#= f.select :category_id, options_for_select(Category.all.collect {|c| [c.name, c.id]},params[:id_cate])
     %select{:id => "category_id", :name => 'article[category_id]'}
-      %option
       -Category.where("parent_id IS NULL").each do |main_category|
         - if main_category.id.to_s().hash == params[:id_cate].hash
           %option{value: main_category.id, :selected => params[:id_cate]}

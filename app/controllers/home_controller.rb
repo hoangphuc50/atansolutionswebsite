@@ -63,7 +63,7 @@ class HomeController < ActionController::Base
   end
   def news
     news_category_id=Category.where("name='news'").first().id
-    @news_category_all=CategoryLanguage.includes(:category).where("language_id=#{@language_id} and categories.parent_id=#{news_category_id} or category_id=#{news_category_id}")
+    @news_category_all=CategoryLanguage.includes(:category).where("language_id=#{@language_id} and categories.parent_id=#{news_category_id} ")
     if params[:id]!=nil
       @news_category=CategoryLanguage.where("language_id=#{@language_id} and category_id=#{params[:id]}").first
       @news_list_all= ArticleLanguage.includes({article: :category},:language).where("language_id=#{@language_id} and articles.category_id=#{params[:id]}").all

@@ -39,7 +39,7 @@ class Admin::ArticlesController < Admin::ApplicationController
       flash[:error] = 'Please enter Name !'
       redirect_to new_admin_article_path(:id_cate => params[:article][:category_id])
     elsif params[:article][:images].blank? == false && ['image/png','image/gif','image/jpeg','image/jpg'].include?(MIME::Types.type_for(params[:article][:images].original_filename).first) == false
-      flash[:error] = 'Must be a url for gif, jpg, or png image. !'
+      flash[:error] = 'Incorrect format Image ( gif, jpg, or png ). !'
       redirect_to new_admin_article_path(:id_cate => params[:article][:category_id])
     else
       @article = Article.new(article_params)

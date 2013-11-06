@@ -19,7 +19,24 @@
   %p
     %label
     = f.label :parent_id
-    = f.select :parent_id, Category.order('parent_id desc,name asc').all.collect {|c| [c.name, c.id]} , :prompt => 'Select Category'
+    %select{:id=>"category_parent_id",:name=>"category[parent_id]"}
+      %option Select Category
+      -Category.where(:parent_id=>nil).each do |category|
+        -if @category.parent_id==category.id
+          %option{:selected => "",:value => "#{category.id}"} #{category.name}
+          -Category.where(:parent_id=>category.id).each do |categoryparent|
+            %option{:value =>"#{categoryparent.id}"}
+              = "- #{categoryparent.name}"
+        -else
+          %option{:value => "#{category.id}"} #{category.name}
+          -Category.where(:parent_id=>category.id).each do |categoryparent|
+            -if @category.parent_id==categoryparent.id
+              %option{:selected => "",:value =>"#{categoryparent.id}"}
+                = "- #{categoryparent.name}"
+            -else
+              %option{:value =>"#{categoryparent.id}"}
+                = "- #{categoryparent.name}"
+    -#= f.select :parent_id, Category.order('parent_id desc,name asc').all.collect {|c| [c.name, c.id]} ,:selected=>@category.parent_id, :prompt => 'Select Category'
   -#%p
   -#  %label
   -#  = f.label :Language_category

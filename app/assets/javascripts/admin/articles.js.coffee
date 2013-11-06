@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 jQuery ($) ->
   $('.category_select').live('change',->
-    if $(this).val() != ""
+    if $(this).val() != "0"
       window.location.href = "articles?id_cate=" + $(this).val()
     else
       window.location.href = "articles"

@@ -5,10 +5,12 @@
   %table
     %thead
       %tr
-        %th
-          %input.check-all{:type => 'checkbox'}/
+        -#%th
+        -#  %input.check-all{:type => 'checkbox'}/
         %th Name
         %th Email
+        %th Created at
+        %th Updated at
         %th Actions
     -#%tfoot
     -#  %tr
@@ -33,11 +35,13 @@
     %tbody
       - @users.each do |user|
         %tr
-          %td
-            %input{:type => 'checkbox'}/
+          -#%td
+          -#  %input{:type => 'checkbox'}/
           %td
             = link_to(user.name, admin_user_path(user))
           %td= user.email
+          %td= user.created_at
+          %td= user.updated_at
           %td
             / Icons
             = link_to(image_tag('admin/icon_view.gif'), admin_user_path(user))

@@ -1,6 +1,11 @@
 .content-box-header
   %h3 Detail user
 .content-box-content
+  - if !flash[:error].nil?
+    #error_explanation.notification.information.png_bg
+      %div.flash-notice
+        %h2
+          = flash[:error]
   %p
     %strong Name:
     = @users.name
@@ -8,5 +13,23 @@
     %strong Email:
     = @users.email
   = link_to 'Edit', edit_admin_user_path(@users),:class => 'button'
-  = link_to 'Reset password', "/admin/resetpassword?id=#{@users.id}",:confirm => 'Reset password. Are you sure?',:class => 'button'
+  //= link_to 'Reset password', "/admin/resetpassword?id=#{@users.id}",:confirm => 'Reset password. Are you sure?',:class => 'button'
   = link_to 'Back', admin_users_path,:class => 'button'
+  %br
+  %br
+    %h4 List articles by #{@users.name}
+    - @article_language=Article.where(:user_id=>@users.id)
+    %table
+      %thead
+        %tr
+          %th Title
+          %th Category
+          %th Created at
+          %th Updated at
+      %tbody
+        - @article_language.each do |article_language|
+          %tr
+            %td= article_language.name
+            %td= article_language.category.try(:name)
+            %td= article_language.created_at
+            %td= article_language.updated_at

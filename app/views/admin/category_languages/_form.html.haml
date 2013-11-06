@@ -42,7 +42,7 @@
       - if @category_language.category.try(:id).nil?
         = f.select :category_id, Category.order('name ASC').all.collect {|c| [c.name, c.id]},:prompt => 'Select Category'
       - else
-        = f.text_field :category_id,:disabled => true,:value=>Category.where(:id=>@category_language.category.try(:id)).first().name, :class => 'text-input large-input'
+        = f.text_field :category_id,:disabled => true,:value=>Category.where(:id=>@category_language.category.try(:id)).first().name, :class => 'text-input small-input'
     -#= f.select :category_id, Category.order('name ASC').all.collect {|c| [c.name, c.id]},:selected =>"#{params[:id_cate] ? params[:id_cate] : @category_language.category.try(:id)}" ,:disabled => true,:prompt => 'Select Category'
     -#= f.select :category_id, options_from_collection_for_select(Category.order('name ASC'), :id, :name, params[:id_cate] ? params[:id_cate] : @category_language.category.try(:id)), :disabled => true, :prompt => 'Select Category'
   %p
@@ -57,9 +57,9 @@
         -else
           = f.select :language_id, Language.all.collect {|c| [c.name, c.id]}
       -else
-        = f.text_field :language_id,:disabled => true,:value=>Language.where(:id=>@category_language.language.try(:id)).first().name, :class => 'text-input large-input'
+        = f.text_field :language_id,:disabled => true,:value=>Language.where(:id=>@category_language.language.try(:id)).first().name, :class => 'text-input small-input'
       -#= f.select :language_id, Language.order('name ASC').all.collect {|c| [c.name, c.id]},:selected =>"#{params[:id_lang]? params[:id_lang] : @category_language.language.try(:id)}"
   %p
     %label
     = f.label :title
-    = f.text_field :title, :class => 'text-input large-input'
+    = f.text_field :title, :class => 'text-input small-input'

@@ -36,8 +36,8 @@ class Admin::LanguagesController < Admin::ApplicationController
 
     @language = Language.new(language_params)
     if @language.save
-      if language_params[:default] ='true'
-        Language.where(:default  =>true).where("id != #{@language[:id]}").first().update_attributes(:default => false)
+      if @language.default
+        Language.where(:default  =>true).where("id != #{@language[:id]}").first().update_attributes(:default => false)  if !Language.where(:default  =>true).where("id != #{@language[:id]}").first().nil?
       end
       redirect_to :action => :index
     else
@@ -50,8 +50,14 @@ class Admin::LanguagesController < Admin::ApplicationController
   def update
 
     if @language.update(language_params)
-      if language_params[:default] ='true'
-        Language.where(:default  =>true).where("id != #{@language[:id]}").first().update_attributes(:default => false)
+      if @language.default
+        Language.where("id = #{@language[:id]}").first().update_attributes(:enable=> true)
+        Language.where(:default  =>true).where("id != #{@language[:id]}").first().update_attributes(:default => false) if !Language.where(:default  =>true).where("id != #{@language[:id]}").first().nil?
+      else
+        if Language.where(:default  =>true).first().nil?
+          Language.first().update_attributes(:default => true,:enable=> true)
+        end
+        #Language.where(:default  =>true).where("id != #{@language[:id]}").first().update_attributes(:default => false) if !Language.where(:default  =>true).where("id != #{@language[:id]}").first().nil?
       end
       redirect_to :action => :index
     else
@@ -63,7 +69,7 @@ class Admin::LanguagesController < Admin::ApplicationController
   # DELETE /languages/1.json
   def destroy
     if @language[:default] ='true'
-      Language.where("id != #{@language[:id]}").first().update_attributes(:default => true)
+      Language.where("id != #{@language[:id]}").first().update_attributes(:default => true,:enable=> true)
     end
     if @language.destroy
       flash[:notice] = I18n.t('admin.languages.destroy.success', :name => @language.name)

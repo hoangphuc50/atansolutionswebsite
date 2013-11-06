@@ -23,7 +23,29 @@
   %p
     %label
     = f.label :category_id
-    = f.select :category_id, options_for_select(Category.all.collect {|c| [c.name, c.id]},params[:id_cate])
+    -#= f.select :category_id, options_for_select(Category.all.collect {|c| [c.name, c.id]},params[:id_cate])
+    %select{:id => "category_id", :name => 'article[category_id]'}
+      %option
+      -Category.where("parent_id IS NULL").each do |main_category|
+        - if main_category.id.to_s().hash == params[:id_cate].hash
+          %option{value: main_category.id, :selected => params[:id_cate]}
+            =main_category.name
+          -Category.where("parent_id=#{main_category.id}").each do |child_category|
+            %option{value: child_category.id}
+              = "-- "+ child_category.name
+        - else
+          %option{value: main_category.id}
+            =main_category.name
+          -Category.where("parent_id=#{main_category.id}").each do |child_category|
+            - if child_category.id.to_s().hash == params[:id_cate].hash
+              %option{value: child_category.id, :selected=> params[:id_cate]}
+                = "-- "+child_category.name
+            - else
+              %option{value: child_category.id}
+                = "-- "+child_category.name
+
+
+
 
   %p
     %label

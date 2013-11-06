@@ -7,20 +7,24 @@
 %section.page-title
   .title.pattern-default
     %h1
-      =I18n.t('hello')
+      =I18n.t('front_end.project.project')
     %span.subtitle
-      =I18n.t('en')
+      =I18n.t('front_end.project.project_description')
 / content wrapper start
 #content-container
   / content wrapper start
   .content-wrapper.clearfix
     .container_12
       %section.grid_12.section-title
-        %h3 Our projects
+        %h3
+          -if @project_category_title.nil?
+            All projects
+          -else
+            =@project_category_title.title
         / portfolio quicksand filter start
         %ul#portfolio-filter
           %li.active
-            = link_to("All",projects_path)
+            = link_to(I18n.t("front_end.project.project_all"),projects_path)
             \/
           - @child_projects_category.each do |row|
             %li
@@ -40,7 +44,7 @@
             %figure.portfolio
               .img-hover.overlay
                 %a.portfolio-image{href: "/project/#{project.id}"}
-                  %img{alt: project.title, src: "/site_images/#{Article.where("id=#{project.article_id}").first().images}", width: "300"}
+                  %img{alt: project.title, src: "/article_images/#{Article.where("id=#{project.article_id}").first().images}", width: "300"}
                 .mask
                   %a.thumb.info{href: "/project/#{project.id}", title: ""} zoom
               %figcaption

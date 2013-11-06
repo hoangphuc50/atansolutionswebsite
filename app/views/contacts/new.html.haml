@@ -53,9 +53,10 @@
   });
 %section.page-title
   .title.pattern-default
-    %h1 Contact
+    %h1
+      =I18n.t("front_end.contact.contact")
     %p.subtitle
-      The Very Best Way To Get in Touch With Us
+      =I18n.t("front_end.contact.contact_description")
 / page-title end
 #content-container
   / content wrapper start
@@ -70,7 +71,8 @@
         -#    = form_for @inquiry, :url => { :action => :create },:class=>"wpcf7-form" do |f|
         -#      = render :partial => 'form', :object => f
         .grid_8.alpha
-          %h4 Leave us a message
+          %h4
+            =I18n.t("front_end.contact.contact_message")
           #wpcf7-f137-p56-o1.wpcf7
             = form_for @inquiry, :url => { :action => :create },:class=>"wpcf7-form" do |f|
               = render :partial => 'form', :object => f
@@ -79,7 +81,7 @@
   / content-wrapper end
 / footer wrapper start
 %script{src: "http://maps.google.com/maps/api/js?sensor=true&ver=1.0", type: "text/javascript"}
-%script{src: "http://pixel-industry.com/wordpress/pocket/wp-content/themes/pocket/js/jquery.ui.map.full.min.js?ver=1.0", type: "text/javascript"}
+= javascript_include_tag 'home/jquery.ui.map.full.min.js'
 -#
 -#
 -#%h1 Want to get in touch?

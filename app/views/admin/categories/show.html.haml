@@ -77,13 +77,13 @@
               %th
                 - @article_language=ArticleLanguage.where(:article_id=>article.id,:language_id=>language.id).first()
                 -if @article_language.nil?
-                  = link_to(image_tag('admin/icon_add.png'), new_admin_article_language_path(:id_arti=>article.id,:id_lang=>language.id))
+                  = link_to(image_tag('admin/icon_add.png'), new_admin_article_language_path(:id=>article.id,:id_cate=>article.category_id))
                 -else
-                  = link_to(image_tag('admin/icon_edit.gif'), edit_admin_article_language_path(@article_language))
+                  = link_to(image_tag('admin/icon_edit.gif'), edit_admin_article_language_path(:id_arti=>article.id,:id_cate=>article.category_id))
             %td
               / Icons
               = link_to(image_tag('admin/icon_view.gif'), admin_article_path(article))
-              = link_to(image_tag('admin/icon_edit.gif'), edit_admin_article_path(article))
+              = link_to(image_tag('admin/icon_edit.gif'), edit_admin_article_path(article,:id_cate=>article.category_id))
               = link_to(image_tag('admin/icon_delete.gif'), admin_article_path(article), :confirm => 'Are You sure?', :method => :delete)
 
   = link_to 'Edit', edit_admin_category_path(@category),:class => 'button'

@@ -19,6 +19,12 @@
   %p
     %label
     = f.label :parent_id
+    %select
+      -Category.where(:parent_id=>nil).each do |category|
+        %option{:value => "#{category.id}"} #{category.name}
+        -Category.where(:parent_id=>category.id).each do |categoryparent|
+          %option{:value =>"#{categoryparent.id}"}
+            = "- #{categoryparent.name}"
     = f.select :parent_id, Category.order('parent_id desc,name asc').all.collect {|c| [c.name, c.id]} , :prompt => 'Select Category'
   -#%p
   -#  %label

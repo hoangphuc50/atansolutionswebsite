@@ -57,6 +57,7 @@ class Admin::UsersController < Admin::ApplicationController
                       }
                   })
         flash[:error] = 'Send to administrator successfull !'
+      end
       redirect_to admin_user_path(@users)
     else
       redirect_to admin_user_path(@users)

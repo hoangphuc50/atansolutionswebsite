@@ -1,8 +1,12 @@
 %section.page-title
   .title.pattern-default
-    %h1 News
+    %h1
+      -if @news_category.nil?
+        =I18n.t("front_end.news.news")
+      -else
+        =@news_category.title
     %span.subtitle
-      See the Latest News from Our Company
+      =I18n.t("front_end.news.news_description")
 / content wrapper start
 #content-container
   .content-wrapper.clearfix
@@ -19,11 +23,12 @@
             %article.post-body
               .post-category
                 %a.category-standard{href: "/article/#{row.id}"}
-                  %img{alt: row.title, src: "/site_images/#{Article.where("id=#{row.article_id}").first().images}", width: "180",height:"140"}
+                  %img{alt: row.title, src: "/article_images/#{Article.where("id=#{row.article_id}").first().images}", width: "180",height:"140"}
               %p
                 =row.short_description
               .btn
-                %a{href: "/article/#{row.id}"} Read more
+                %a{href: "/article/#{row.id}"}
+                  =I18n.t("front_end.news.read_more")
           / blog post end
           %li.divider
       / blog posts container end
@@ -31,13 +36,15 @@
       %aside.grid_4.aside.right
         %ul.aside-widgets
           %li#list_categories_widget-2.widget.widget_list_categories_widget.clearfix
-            %h5 News Categories
+            %h5
+              =I18n.t("front_end.news.news_category")
             %ul
               -@news_category_all.each do |row|
                 %li
                   = link_to(row.title,news_path(:id=>row.category_id))
           %li#archives-2.widget.widget_archive.clearfix
-            %h5 Archive
+            %h5
+              =I18n.t("front_end.news.news_archive")
             %ul
               %li
                 %a{href: "", title: "March 2013"} March 2013

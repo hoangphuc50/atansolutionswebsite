@@ -1,15 +1,18 @@
 = content_for :javascripts do
   = javascript_include_tag 'admin/languages_filter'
-
-- if @article.errors.any?
-  #error_explanation.notification.information.png_bg
-    %div.flash-notice
-      %h2
-        = pluralize(@article.errors.count, 'error')
-        prohibited this article from being saved:
-      %ul
-        - @article.errors.full_messages.each do |msg|
-          %li= msg
+- if flash[:error]
+  .notification.error.png_bg
+    %div.flash-notice= flash[:error]
+    = yield
+-#- if @article.errors.any?
+-#  #error_explanation.notification.information.png_bg
+-#    %div.flash-notice
+-#      %h2
+-#        = pluralize(@article.errors.count, 'error')
+-#        prohibited this article from being saved:
+-#      %ul
+-#        - @article.errors.full_messages.each do |msg|
+-#          %li= msg
 %fieldset
   / Set class to "column-left" or "column-right" on fieldsets to divide the form into columns
   %p

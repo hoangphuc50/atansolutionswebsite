@@ -4,7 +4,8 @@ class Admin::ArticlesController < Admin::ApplicationController
 
   def index
     unless params[:id_cate].blank?
-      @articles = Article.where('category_id = ?',params[:id_cate]).all
+      #@articles = Article.include(:category).where('category_id = ?',params[:id_cate]).all
+      @articles=Article.includes(:category).where("categories.parent_id=#{params[:id_cate]} or category_id=#{params[:id_cate]}")
       respond_to do |format|
         format.html # index.html.erb
         format.json { render json: @articles }

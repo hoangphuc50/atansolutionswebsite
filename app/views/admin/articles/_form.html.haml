@@ -29,6 +29,8 @@
     %label
     = f.label :Image
     = f.file_field 'images'
+    - unless params[:id].nil?
+      %img{alt: "portfolio", src: "/article_images/#{Article.where("id=#{params[:id]}").first().images}", width: "220"}/
 
     %p
       %label

@@ -34,44 +34,58 @@ class Admin::ArticlesController < Admin::ApplicationController
   # POST /categories
   # POST /categories.json
   def create
-    @article = Article.new(article_params)
-    uploaded_io = ""
-    @article.images = uploaded_io
-    unless params[:article][:images].blank?
-      uploaded_io = params[:article][:images]
-      DataFile.save(uploaded_io)
-      @article.images = uploaded_io.original_filename
+    if params[:article][:name].blank?
+      flash[:error] = 'Please enter Name !'
+      redirect_to new_admin_article_path(:id_cate => params[:article][:category_id])
+    #elsif ['png','gif','jpeg'].include?(MIME::Types.type_for(params[:article][:images].original_filename).first) == false
+    #  flash[:error] = 'error image !'
+    #  redirect_to new_admin_article_path(:id_cate => params[:article][:category_id])
+    else
+      @article = Article.new(article_params)
+      uploaded_io = ""
+      @article.images = uploaded_io
+      unless params[:article][:images].blank?
+        uploaded_io = params[:article][:images]
+        DataFile.save(uploaded_io)
+        @article.images = uploaded_io.original_filename
+      end
+
+      @article.user_id = current_user.id
+      if @article.save
+        flash[:notice] = I18n.t('admin.articles.new.success', :name => @article.name)
+        redirect_to admin_articles_path(:id_cate => params[:id_cate])
+        #redirect_to :action => :index, :id_cate=> params[:id_cate]
+      else
+        render :action => :new,:id_cate=> params[:id_cate]
+      end
     end
 
-    @article.user_id = current_user.id
-    if @article.save
-      flash[:notice] = I18n.t('admin.articles.new.success', :name => @article.name)
-      redirect_to admin_articles_path(:id_cate => params[:id_cate])
-      #redirect_to :action => :index, :id_cate=> params[:id_cate]
-    else
-      render :action => :new,:id_cate=> params[:id_cate]
-    end
   end
 
   # PATCH/PUT /categories/1
   # PATCH/PUT /categories/1.json
   def update
-    @article = Article.find(params[:id])
-    images = ""
-    unless params[:article][:images].blank?
-      uploaded_io = params[:article][:images]
-      DataFile.save(uploaded_io)
-      images = uploaded_io.original_filename
-    end
-    @article.user_id = current_user.id
-    @article.name = params[:article][:name]
-    @article.category_id = params[:article][:category_id]
-    @article.enable = params[:article][:enable]
-    if @article.update_attributes(:id => params[:id])
-      flash[:notice] = I18n.t('admin.articles.edit.success', :name => @article.name)
-      redirect_to admin_articles_path(:id_cate => params[:id_cate])
+    if params[:article][:name].blank?
+      flash[:error] = 'Please enter Name !'
+      redirect_to edit_admin_article_path(:id_cate => params[:article][:category_id], :id=>@article.id)
     else
-      render :action => :edit,:id_cate=> params[:id_cate]
+      @article = Article.find(params[:id])
+      images = ""
+      unless params[:article][:images].blank?
+        uploaded_io = params[:article][:images]
+        DataFile.save(uploaded_io)
+        images = uploaded_io.original_filename
+      end
+      @article.user_id = current_user.id
+      @article.name = params[:article][:name]
+      @article.category_id = params[:article][:category_id]
+      @article.enable = params[:article][:enable]
+      if @article.update_attributes(:id => params[:id])
+        flash[:notice] = I18n.t('admin.articles.edit.success', :name => @article.name)
+        redirect_to admin_articles_path(:id_cate => @article.category_id)
+      else
+        render :action => :edit,:id_cate=> params[:id_cate]
+      end
     end
   end
 

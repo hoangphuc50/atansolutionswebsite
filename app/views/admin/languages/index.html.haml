@@ -5,8 +5,8 @@
   %table
     %thead
       %tr
-        %th
-          %input.check-all{:type => 'checkbox'}
+        -#%th
+        -#  %input.check-all{:type => 'checkbox'}
         %th Name
         %th Language code
         %th Enable
@@ -35,8 +35,8 @@
     %tbody
       - @language.each do |language|
         %tr
-          %td
-            %input{:type => 'checkbox'}
+          -#%td
+          -#  %input{:type => 'checkbox'}
           %td
             = link_to(language.name, admin_language_path(language))
           %td= language.language_code

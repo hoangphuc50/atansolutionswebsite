@@ -18,8 +18,8 @@
   %table
     %thead
       %tr
-        %th
-          %input.check-all{:type => 'checkbox'}
+        -#%th
+        -#  %input.check-all{:type => 'checkbox'}
         /%th Category
         %th Language
         %th Title category
@@ -31,8 +31,8 @@
     %tbody
       - @category_language.each do |category_language|
         %tr
-          %td
-            %input{:type => 'checkbox'}
+          -#%td
+          -#  %input{:type => 'checkbox'}
           /%td= category_language.category.try(:name)
           %td= category_language.language.try(:name)
           %td= category_language.title
@@ -46,8 +46,8 @@
   %table
     %thead
       %tr
-        %th
-          %input.check-all{:type => 'checkbox'}
+        -#%th
+        -#  %input.check-all{:type => 'checkbox'}
         %th Name article
         - @language=Language.all
         - @language.each do |language|
@@ -68,8 +68,8 @@
       - unless @articles.nil?
         - @articles.each do |article|
           %tr
-            %td
-              %input{:type => 'checkbox'}
+            -#%td
+            -#  %input{:type => 'checkbox'}
             %td
               = link_to(article.name, admin_article_path(article))
             - @language=Language.all
@@ -86,5 +86,5 @@
               = link_to(image_tag('admin/icon_edit.gif'), edit_admin_article_path(article,:id_cate=>article.category_id))
               = link_to(image_tag('admin/icon_delete.gif'), admin_article_path(article), :confirm => 'Are You sure?', :method => :delete)
 
-  = link_to 'Edit', edit_admin_category_path(@category),:class => 'button'
+  -#= link_to 'Edit', edit_admin_category_path(@category),:class => 'button'
   = link_to 'Back', admin_categories_path,:class => 'button'

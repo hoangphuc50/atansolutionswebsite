@@ -38,8 +38,8 @@ class Admin::SessionsController < ApplicationController
                         :address              => 'smtp.gmail.com',
                         :port                 => '587',
                         :enable_starttls_auto => true,
-                        :user_name            => 'techp2f@gmail.com',
-                        :password             => 'tulat22492',
+                        :user_name            => '45@gmail.com',
+                        :password             => '23245345',
                         :authentication       => :plain,
                         :domain               => "localhost.localdomain"
                     }

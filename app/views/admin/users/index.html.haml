@@ -5,8 +5,8 @@
   %table
     %thead
       %tr
-        %th
-          %input.check-all{:type => 'checkbox'}/
+        -#%th
+        -#  %input.check-all{:type => 'checkbox'}/
         %th Name
         %th Email
         %th Created at
@@ -35,8 +35,8 @@
     %tbody
       - @users.each do |user|
         %tr
-          %td
-            %input{:type => 'checkbox'}/
+          -#%td
+          -#  %input{:type => 'checkbox'}/
           %td
             = link_to(user.name, admin_user_path(user))
           %td= user.email

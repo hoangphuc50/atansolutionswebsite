@@ -5,8 +5,8 @@
   %table
     %thead
       %tr
-        %th
-          %input.check-all{:type => 'checkbox'}
+        -#%th
+        -#  %input.check-all{:type => 'checkbox'}
         %th Name
         %th Parent category
         - @language=Language.all
@@ -37,8 +37,8 @@
     %tbody
       - @category.each do |category|
         %tr
-          %td
-            %input{:type => 'checkbox'}/
+          -#%td
+          -#  %input{:type => 'checkbox'}/
           %td
             = link_to(category.name, admin_category_path(category))
           %td=category.parent.try(:name)

@@ -38,9 +38,9 @@ class Admin::ArticlesController < Admin::ApplicationController
     if params[:article][:name].blank?
       flash[:error] = 'Please enter Name !'
       redirect_to new_admin_article_path(:id_cate => params[:article][:category_id])
-    #elsif ['png','gif','jpeg'].include?(MIME::Types.type_for(params[:article][:images].original_filename).first) == false
-    #  flash[:error] = 'error image !'
-    #  redirect_to new_admin_article_path(:id_cate => params[:article][:category_id])
+    elsif params[:article][:images].blank? == false && ['image/png','image/gif','image/jpeg','image/jpg'].include?(MIME::Types.type_for(params[:article][:images].original_filename).first) == false
+      flash[:error] = 'Must be a url for gif, jpg, or png image. !'
+      redirect_to new_admin_article_path(:id_cate => params[:article][:category_id])
     else
       @article = Article.new(article_params)
       uploaded_io = ""
@@ -68,14 +68,16 @@ class Admin::ArticlesController < Admin::ApplicationController
   def update
     if params[:article][:name].blank?
       flash[:error] = 'Please enter Name !'
-      redirect_to edit_admin_article_path(:id_cate => params[:article][:category_id], :id=>@article.id)
+      redirect_to edit_admin_article_path(:id_cate => params[:article][:category_id], :id=>params[:id])
+    elsif params[:article][:images].blank? == false && ['image/png','image/gif','image/jpeg','image/jpg'].include?(MIME::Types.type_for(params[:article][:images].original_filename).first) == false
+      flash[:error] = 'Must be a url for gif, jpg, or png image. !'
+      redirect_to edit_admin_article_path(:id_cate => params[:article][:category_id], :id=>params[:id])
     else
       @article = Article.find(params[:id])
-      images = ""
       unless params[:article][:images].blank?
         uploaded_io = params[:article][:images]
         DataFile.save(uploaded_io)
-        images = uploaded_io.original_filename
+        @article.images = uploaded_io.original_filename
       end
       @article.user_id = current_user.id
       @article.name = params[:article][:name]

@@ -30,7 +30,10 @@ class Admin::ArticleLanguagesController < ApplicationController
     if params[:article_language][:title].blank?
       flash[:error] = 'Please enter Title !'
       redirect_to new_admin_article_language_path(:id => params[:id],:id_cate => params[:id_cate])
-    elsif exist_language.count > 0
+    elsif exist_language_category.count == 0
+      flash[:error] = 'Category language do not exist. Please, choose other language !'
+      redirect_to new_admin_article_language_path(:id => params[:id],:id_cate => params[:id_cate])
+    elsif exist_language_article.count > 0
       flash[:error] = 'Language exist. Please, choose other language !'
       redirect_to new_admin_article_language_path(:id => params[:id],:id_cate => params[:id_cate])
     else
@@ -53,7 +56,10 @@ class Admin::ArticleLanguagesController < ApplicationController
     if params[:article_language][:title].blank?
       flash[:error] = 'Please enter Title !'
       redirect_to edit_admin_article_language_path(:id_arti => params[:article_language][:article_id],:id_cate => @article_language.article.category_id,:id => params[:id],:action=>'edit')
-    elsif exist_language.count > 0
+    elsif exist_language_category.count == 0
+      flash[:error] = 'Category language do not exist. Please, choose other language !'
+      redirect_to edit_admin_article_language_path(:id_arti => params[:article_language][:article_id],:id_cate => @article_language.article.category_id,:id => params[:id],:action=>'edit')
+    elsif exist_language_article.count > 0
       flash[:error] = 'Language exist. Please, choose other language !'
       redirect_to edit_admin_article_language_path(:id_arti => params[:article_language][:article_id],:id_cate => @article_language.article.category_id,:id => params[:id],:action=>'edit')
     else
@@ -93,7 +99,7 @@ class Admin::ArticleLanguagesController < ApplicationController
     params.require(:article_language).permit(:article_id, :language_id, :title, :short_description, :content)
   end
 
-  def exist_language
+  def exist_language_article
     if @_action_name == 'update'
       ArticleLanguage.where('article_id = ? AND language_id = ? AND id <> ?',
                             params[:article_language][:article_id], params[:article_language][:language_id],
@@ -104,5 +110,9 @@ class Admin::ArticleLanguagesController < ApplicationController
                             0)
     end
 
+  end
+
+  def exist_language_category
+     CategoryLanguage.where('language_id = ? AND category_id = ?',params[:article_language][:language_id], params[:id_cate])
   end
 end

@@ -72,10 +72,9 @@ class Admin::LanguagesController < Admin::ApplicationController
       Language.where("id != #{@language[:id]}").first().update_attributes(:default => true,:enable=> true)
     end
     if @language.destroy
-      flash[:notice] = I18n.t('admin.languages.destroy.success', :name => @language.name)
+      flash[:notice] = @language.errors.full_messages
     else
-      flash[:notice] = I18n.t('admin.languages.destroy.failure', :name => @language.name)
-    end
+      flash[:notice] = @language.errors.full_messages
 
     redirect_to :action => :index
   end

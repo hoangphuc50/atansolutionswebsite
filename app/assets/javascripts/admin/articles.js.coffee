@@ -22,7 +22,7 @@ jQuery ($) ->
   article_name = (name) ->
     remaining = $('#remaining')
     chars = name
-    remaining.text(50 - chars)
+    remaining.text(100 - chars)
 
   $('#article_language_title').keyup( ->
     article_language_title this.value.length
@@ -30,7 +30,7 @@ jQuery ($) ->
   article_language_title = (name) ->
     remaining = $('#remaining_title')
     chars = name
-    remaining.text(50 - chars)
+    remaining.text(100 - chars)
 
   $('#article_language_short_description').keyup( ->
     article_language_short_description this.value.length

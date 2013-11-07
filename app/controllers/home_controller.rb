@@ -34,7 +34,7 @@ class HomeController < ActionController::Base
     else
       @projects_list=ArticleLanguage.includes({article: :category},:language).where("language_id=#{@language_id} and categories.parent_id=#{category_projects} or articles.category_id=#{category_projects} and language_id=#{@language_id}").order('article_languages.created_at DESC')
     end
-    page_size=5
+    page_size=9
     if params[:page]==nil
       page=1
     else

@@ -1,8 +1,25 @@
-development:
+db_config: &db_config
   adapter: postgresql
-  database: atan
-  pool: 10
-  timeout: 5000
-  username: postgres
+  encoding: unicode
   host: localhost
-  password: root
+  pool: 5
+
+login: &login
+  username: postgres
+  password: ngochai8x	
+
+
+development:
+  <<: *db_config
+  database: atan
+  <<: *login
+
+production:
+  <<: *db_config
+  database: atan_production
+  <<: *login
+
+test:
+  <<: *db_config
+  database: atan
+  <<: *login

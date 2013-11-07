@@ -1,5 +1,6 @@
-
+//= require jquery.min
 //= require home/jquery
-//= require admin/jquery-ui
+//= require kendo/kendo.web.min
 //= require admin/articles
 //= require admin/simpla.jquery.configuration
+

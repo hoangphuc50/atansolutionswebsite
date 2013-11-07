@@ -89,6 +89,7 @@ class Admin::ArticlesController < Admin::ApplicationController
       @article.name = params[:article][:name]
       @article.category_id = params[:article][:category_id]
       @article.enable = params[:article][:enable]
+      @article.priority = params[:article][:priority]
       if @article.update_attributes(:id => params[:id])
         flash[:notice] = I18n.t('admin.articles.edit.success', :name => @article.name)
         redirect_to admin_articles_path(:id_cate => @article.category_id)
@@ -120,6 +121,6 @@ class Admin::ArticlesController < Admin::ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def article_params
-    params.require(:article).permit(:name, :category_id, :images, :enable)
+    params.require(:article).permit(:name, :category_id, :images, :enable, :priority)
   end
 end

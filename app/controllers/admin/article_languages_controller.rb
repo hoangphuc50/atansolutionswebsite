@@ -79,11 +79,11 @@ class Admin::ArticleLanguagesController < ApplicationController
     else
       @article_language = ArticleLanguage.find(params[:id])
       if @article_language.update(article_language_params)
-        flash[:notice] = I18n.t('admin.languages.edit.success', :name => @article_language.title)
         redirect_to admin_article_path(:id=>@article_language.article.id, :id_cate => @article_language.article.category.id)
       else
-        #flash[:error] = I18n.t('admin.rental_units.edit.failure')
-        render :action => :edit
+        flash[:error] = @article_language.errors.full_messages
+        redirect_to edit_admin_article_language_path(:id_arti => params[:article_language][:article_id],:id_cate => @article_language.article.category_id,:id => params[:id],:action=>'edit')
+
       end
     end
 

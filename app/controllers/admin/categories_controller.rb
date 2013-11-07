@@ -18,7 +18,11 @@ class Admin::CategoriesController < Admin::ApplicationController
     else
       page=params[:page]
     end
-    @total_page= Array.new(@articles.count / page_size +1)
+    if @articles.count % page_size==0
+      @total_page= Array.new(@articles.count / page_size)
+    else
+      @total_page= Array.new(@articles.count / page_size +1)
+    end
     offset=(page.to_i*page_size.to_i)- page_size.to_i
     @articles=@articles.limit(page_size).offset(offset)
   end
@@ -40,7 +44,7 @@ class Admin::CategoriesController < Admin::ApplicationController
     @category = Category.new(category_params)
 
     if @category.save
-      flash[:notice] = I18n.t('admin.categories.new.success', :name => @category.name)
+      #flash[:notice] = I18n.t('admin.categories.new.success', :name => @category.name)
       redirect_to :action => :index
     else
       render :action => :new
@@ -51,7 +55,7 @@ class Admin::CategoriesController < Admin::ApplicationController
   # PATCH/PUT /categories/1.json
   def update
     if @category.update(category_params)
-      flash[:notice] = I18n.t('admin.categories.edit.success', :name => @category.name)
+      #flash[:notice] = I18n.t('admin.categories.edit.success', :name => @category.name)
       redirect_to :action => :index
     else
       render :action => :new
@@ -62,9 +66,9 @@ class Admin::CategoriesController < Admin::ApplicationController
   # DELETE /categories/1.json
   def destroy
     if @category.destroy
-      flash[:notice] = I18n.t('admin.categories.destroy.success', :name => @category.name)
+      #flash[:notice] = I18n.t('admin.categories.destroy.success', :name => @category.name)
     else
-      flash[:notice] = I18n.t('admin.categories.destroy.failure', :name => @category.name)
+      flash[:notice] = @category.errors.full_messages
     end
 
     redirect_to :action => :index

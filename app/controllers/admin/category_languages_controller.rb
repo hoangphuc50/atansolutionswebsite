@@ -27,7 +27,7 @@ class Admin::CategoryLanguagesController < Admin::ApplicationController
   def create
     @category_language = CategoryLanguage.new(category_language_params)
     if @category_language.save
-      flash[:notice] = I18n.t('admin.languages.new.success', :name => @category_language.title)
+      #flash[:notice] = @category_language.errors.full_messages
       redirect_to admin_category_path(:id=>@category_language.category.id)
     else
       render :action => :new
@@ -38,7 +38,7 @@ class Admin::CategoryLanguagesController < Admin::ApplicationController
   # PATCH/PUT /category_languages/1.json
   def update
     if @category_language.update(category_language_params)
-      flash[:notice] = I18n.t('admin.languages.edit.success', :name => @category_language.title)
+      #flash[:notice] = @category_language.errors.full_messages
       redirect_to admin_category_path(:id=>@category_language.category.id)
     else
       #flash[:error] = I18n.t('admin.rental_units.edit.failure')
@@ -50,9 +50,9 @@ class Admin::CategoryLanguagesController < Admin::ApplicationController
   # DELETE /category_languages/1.json
   def destroy
     if @category_language.destroy
-      flash[:notice] = I18n.t('admin.categories.destroy.success', :name => @category_language.title)
+      #flash[:notice] =@category_language.errors.full_messages
     else
-      flash[:notice] = I18n.t('admin.categories.destroy.failure', :name => @category_language.title)
+      flash[:notice] = @category_language.errors.full_messages
     end
     if @category_language.category !=''
       redirect_to admin_category_path(:id=>@category_language.category.id)

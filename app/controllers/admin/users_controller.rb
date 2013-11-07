@@ -67,7 +67,7 @@ class Admin::UsersController < Admin::ApplicationController
   # PATCH/PUT /users/1.json
   def update
     if @users.update(user_param)
-      flash[:notice] = I18n.t('admin.users.edit.success', :name => @users.email)
+      #flash[:notice] = @users.errors.full_messages
       redirect_to :action => :index
     else
       #flash[:error] = I18n.t('admin.rental_units.edit.failure')
@@ -79,9 +79,9 @@ class Admin::UsersController < Admin::ApplicationController
   # DELETE /users/1.json
   def destroy
     if @users.destroy
-      flash[:notice] = I18n.t('admin.users.destroy.success', :name => @users.email)
+      #flash[:notice] = @users.errors.full_messages
     else
-      flash[:notice] = I18n.t('admin.users.destroy.failure', :name => @users.email)
+      flash[:notice] = @users.errors.full_messages
     end
 
     redirect_to :action => :index

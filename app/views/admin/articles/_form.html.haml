@@ -18,7 +18,11 @@
   %p
     %label
     = f.label :name
-    = f.text_field :name, :class => 'text-input small-input'
+    = f.text_field :name, :class => 'text-input small-input', :maxlength => 100
+    %p
+      %span#remaining 100
+      %span characters remaining
+
 
   %p
     %label
@@ -37,15 +41,11 @@
             =main_category.name
           -Category.where("parent_id=#{main_category.id}").each do |child_category|
             - if child_category.id.to_s().hash == params[:id_cate].hash
-              %option{value: child_category.id, :selected=> params[:id_cate]}
+              %option{value: child_category.id, :selected => params[:id_cate]}
                 = "-- "+child_category.name
             - else
               %option{value: child_category.id}
                 = "-- "+child_category.name
-
-
-
-
   %p
     %label
     = f.label :Image
@@ -58,6 +58,10 @@
       %label
       = f.label :enable
       = f.check_box :enable, :checked => true
+    %p
+      %label
+      = f.label :priority
+      = f.text_field :priority, :min=>0,  :max=>100
   -#%p
   -#  %label
   -#  = f.label :Language_category

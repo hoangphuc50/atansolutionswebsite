@@ -10,6 +10,12 @@ class Admin::ArticlesController < Admin::ApplicationController
         format.html # index.html.erb
         format.json { render json: @articles }
       end
+    else
+      @articles=Article.includes(:category)
+      respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: @articles }
+      end
     end
   end
 

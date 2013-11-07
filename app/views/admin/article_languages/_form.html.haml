@@ -30,12 +30,12 @@
   %p
     %label
     = f.label :short_description
-    = f.text_field :short_description, :class => 'text-input large-input'
+    = f.text_area :short_description, :class => 'text-input large-input',:rows=>10
 
   %p
     %label
     = f.label :content
-    -#= f.text_field :content, :class => 'text-input large-input'
+    -#= f.text_area :content,:rows=>15
     = f.text_area :content, :class => 'ckeditor'
     -#%div#editor
 

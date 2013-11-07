@@ -30,17 +30,21 @@ class HomeController < ActionController::Base
     @child_projects_category=CategoryLanguage.includes(:category).where("language_id=#{@language_id} and categories.parent_id=#{category_projects}")
     if params[:id]!=nil
       @project_category_title=CategoryLanguage.where("language_id=#{@language_id} and category_id=#{params[:id]}").first
-      @projects_list=ArticleLanguage.includes({article: :category},:language).where("language_id=#{@language_id} and articles.category_id=#{params[:id]}")
+      @projects_list=ArticleLanguage.includes({article: :category},:language).where("language_id=#{@language_id} and articles.category_id=#{params[:id]}").order('article_languages.created_at DESC')
     else
-      @projects_list=ArticleLanguage.includes({article: :category},:language).where("language_id=#{@language_id} and categories.parent_id=#{category_projects}")
+      @projects_list=ArticleLanguage.includes({article: :category},:language).where("language_id=#{@language_id} and categories.parent_id=#{category_projects} or articles.category_id=#{category_projects} and language_id=#{@language_id}").order('article_languages.created_at DESC')
     end
-    page_size=9
+    page_size=5
     if params[:page]==nil
       page=1
     else
       page=params[:page]
     end
-    @total_page= Array.new(@projects_list.count / page_size +1)
+    if @projects_list.count % page_size==0
+      @total_page= Array.new(@projects_list.count / page_size)
+    else
+      @total_page= Array.new(@projects_list.count / page_size +1)
+    end
     offset=(page.to_i*page_size.to_i)- page_size.to_i
     @projects_list=@projects_list.limit(page_size).offset(offset)
     #@projects_list_display=@projects_list.paginate(:page => params[:page])
@@ -67,9 +71,9 @@ class HomeController < ActionController::Base
 
     if params[:id]!=nil
       @news_category=CategoryLanguage.where("language_id=#{@language_id} and category_id=#{params[:id]}").first
-      @news_list_all= ArticleLanguage.includes({article: :category},:language).where("language_id=#{@language_id} and articles.category_id=#{params[:id]}").all
+      @news_list_all= ArticleLanguage.includes({article: :category},:language).where("language_id=#{@language_id} and articles.category_id=#{params[:id]}").order('article_languages.created_at DESC').all
     else
-      @news_list_all= ArticleLanguage.includes({article: :category},:language).where("language_id=#{@language_id} and categories.parent_id=#{news_category_id}").all
+      @news_list_all= ArticleLanguage.includes({article: :category},:language).where("language_id=#{@language_id} and categories.parent_id=#{news_category_id} or articles.category_id=#{news_category_id} and language_id=#{@language_id}").order('article_languages.created_at DESC')
     end
   end
   def article

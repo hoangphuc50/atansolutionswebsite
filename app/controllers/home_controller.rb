@@ -57,7 +57,7 @@ class HomeController < ActionController::Base
   def services
     category_services=Category.where("name='services'").first().id
     @about_my_services=select_html_article(category_services,99)
-    @all_services=ArticleLanguage.includes(:article,:language).where("language_id=#{@language_id} and articles.category_id=#{category_services} and articles.priority=1").all
+    @all_services=ArticleLanguage.includes(:article,:language).where("language_id=#{@language_id} and articles.category_id=#{category_services} and articles.priority NOT IN (?)",[99,100]).all
     @slide_page_services=select_html_article(category_services,100)
   end
   def service
@@ -92,7 +92,6 @@ class HomeController < ActionController::Base
   end
   def select_html_article(category_id="",priority="")
       ArticleLanguage.includes(:article,:language).where("language_id=#{@language_id} and articles.category_id=#{category_id} and articles.priority=#{priority}").first().content
-
   end
 
 end

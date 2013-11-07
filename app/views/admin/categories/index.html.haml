@@ -35,7 +35,8 @@
     -#      / End .pagination
     -#      .clear
     %tbody
-      - @category.each do |category|
+      -#- @category.each do |category|
+      -Category.where(:parent_id=>nil).each do |category|
         %tr
           -#%td
           -#  %input{:type => 'checkbox'}/
@@ -55,3 +56,23 @@
             = link_to(image_tag('admin/icon_view.gif'), admin_category_path(category))
             = link_to(image_tag('admin/icon_edit.gif'), edit_admin_category_path(category))
             = link_to(image_tag('admin/icon_delete.gif'), admin_category_path(category), :confirm => 'Are you sure?', :method => :delete)
+        -Category.where(:parent_id=>category.id).each do |categoryparent|
+          %tr
+            -#%td
+            -#  %input{:type => 'checkbox'}/
+            %td
+              = link_to("--#{categoryparent.name}", admin_category_path(categoryparent))
+            %td=categoryparent.parent.try(:name)
+            - @language=Language.all
+            - @language.each do |language|
+              %th
+                - @category_language=CategoryLanguage.where(:category_id=>categoryparent.id,:language_id=>language.id).first()
+                -if @category_language.nil?
+                  = link_to(image_tag('admin/icon_add.png'), new_admin_category_language_path(:id_cate=>categoryparent.id,:id_lang=>language.id))
+                -else
+                  = link_to(image_tag('admin/icons/pencil.png'), edit_admin_category_language_path(@category_language))
+            %td
+              / Icons
+              = link_to(image_tag('admin/icon_view.gif'), admin_category_path(categoryparent))
+              = link_to(image_tag('admin/icon_edit.gif'), edit_admin_category_path(categoryparent))
+              = link_to(image_tag('admin/icon_delete.gif'), admin_category_path(categoryparent), :confirm => 'Are you sure?', :method => :delete)

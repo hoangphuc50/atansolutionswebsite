@@ -6,7 +6,7 @@ db_config: &db_config
 
 login: &login
   username: postgres
-  password: ngochai8x	
+  password: root
 
 
 development:

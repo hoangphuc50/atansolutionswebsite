@@ -79,7 +79,7 @@
                 -if @article_language.nil?
                   = link_to(image_tag('admin/icon_add.png'), new_admin_article_language_path(:id=>article.id,:id_cate=>article.category_id))
                 -else
-                  = link_to(image_tag('admin/icon_edit.gif'), edit_admin_article_language_path(:id_arti=>article.id,:id_cate=>article.category_id))
+                  = link_to(image_tag('admin/icon_edit.gif'), edit_admin_article_language_path(@article_language,:id_arti=>article.id,:id_cate=>article.category_id))
             %td
               / Icons
               = link_to(image_tag('admin/icon_view.gif'), admin_article_path(article))

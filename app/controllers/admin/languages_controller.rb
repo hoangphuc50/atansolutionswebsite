@@ -75,7 +75,7 @@ class Admin::LanguagesController < Admin::ApplicationController
       flash[:notice] = @language.errors.full_messages
     else
       flash[:notice] = @language.errors.full_messages
-
+    end
     redirect_to :action => :index
   end
 

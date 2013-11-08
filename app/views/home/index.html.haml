@@ -20,8 +20,10 @@
         %article.grid_12.portfolio-box{style: "margin-bottom: 0px;"}
           %section.divider-with-title.clearfix
             .title
-              %h4 Recent Work
-            %a.title-link{href: "/projects"} View more
+              %h4
+                =I18n.t("front_end.index.recent_work")
+            %a.title-link{href: "/projects"}
+              =I18n.t("front_end.index.view_more")
           -i=0
           - @top_4_projects.each do |row|
           -i=i+1
@@ -79,7 +81,8 @@
         %article.grid_6.jcarousellite.blog-widget-carousel.clearfix.vertical.alpha
           %section.divider-with-title.carousel.clearfix
             .title
-              %h4 Latest news
+              %h4
+                =I18n.t("front_end.index.latest_new")
             %ul.carousel-nav
               %li
                 %a.carousel-36-nav.prev{href: "#", style: "display: block;"}

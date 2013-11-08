@@ -23,11 +23,11 @@
             =@project_category_title.title
         / portfolio quicksand filter start
         %ul#portfolio-filter
-          %li.active
+          %li
             = link_to(I18n.t("front_end.project.project_all"),projects_path)
             \/
           - @child_projects_category.each do |row|
-            -if params[:id]==row.category_id
+            -if params[:id].to_i==row.category_id.to_i
               %li.active
                 = link_to(row.title,projects_path(:id=>row.category_id))
                 -#%a.graphic-design{href: "projects/#{row.id}"}>

@@ -23,7 +23,7 @@ vi:
   front_end:
     top_menu:
       home: "Trang chủ"
-      home__description: "Welcome"
+      home__description: "Xin chào"
       atansolutions: "Atansolutions"
       atansolutions_description: "Chúng tôi là ai"
       atansolutions_about_us: "Giới thiệu"
@@ -51,7 +51,7 @@ vi:
     contact:
       contact: "Liên hệ"
       contact_description: "liên hệ nhanh với công ty"
-      contact_message: "Leave us a message"
+      contact_message: "Nhập nôi dung tin nhắn"
       send_message: "Gửi thông tin"
     footer:
       copyright: "Bản quyền thuộc về ATAN Solutions 2013"

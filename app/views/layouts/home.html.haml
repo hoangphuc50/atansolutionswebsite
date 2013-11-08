@@ -25,6 +25,30 @@
     = javascript_include_tag 'home/jquery.flexslider-min'
     = javascript_include_tag 'home/main'
     = javascript_include_tag 'home/jquery.nivo.slider'
+    :javascript
+      jQuery(function(){
+      var a=location.href.replace(/#.*/, "");
+      if (a.indexOf("project") >= 0)
+        {
+          jQuery("li.home").removeClass("current-menu-parent");
+          jQuery("li.project").addClass("current-menu-parent");
+        }
+      if (a.indexOf("about_us") >= 0 || a.indexOf("service") >= 0 )
+        {
+          jQuery("li.home").removeClass("current-menu-parent");
+          jQuery("li.about_us").addClass("current-menu-parent");
+        }
+      if (a.indexOf("news") >= 0 || a.indexOf("article") >= 0)
+        {
+          jQuery("li.home").removeClass("current-menu-parent");
+          jQuery("li.news").addClass("current-menu-parent");
+        }
+      if (a.indexOf("contact") >= 0)
+        {
+          jQuery("li.home").removeClass("current-menu-parent");
+          jQuery("li.contact").addClass("current-menu-parent");
+        }
+      });
 %body.pattern-default.homepage
   %header#header.clearfix{style: "display: block; top: 0px;"}
     %div{style: "position:absolute; top:3px;right:30px"}
@@ -43,13 +67,13 @@
         / main navigation start
         %nav#nav
           %ul#menu-menu.menu{style: "display: none;"}
-            %li.menu-item.current-menu-parent
+            %li.menu-item.home.current-menu-parent
               %a{href: "/"}
                 %i.icon-nav.icon-home>
                 =I18n.t("front_end.top_menu.home")
               %span
                 =I18n.t("front_end.top_menu.home__description")
-            %li.menu-item{id: ""}
+            %li.menu-item.about_us.service
               %a{href: "/about_us"}
                 %i.icon-nav.icon-columns>
                 =I18n.t("front_end.top_menu.atansolutions")
@@ -62,19 +86,19 @@
                 %li.menu-item{id: ""}
                   %a{href: "/services"}
                     =I18n.t("front_end.top_menu.atansolutions_services")
-            %li.menu-item{id: ""}
+            %li.menu-item.project
               %a{href: "/projects"}
                 %i.icon-nav.icon-picture>
                 =I18n.t("front_end.top_menu.our_project")
               %span
                 =I18n.t("front_end.top_menu.our_project_description")
-            %li.menu-item{id: ""}
+            %li.menu-item.news
               %a{href: "/news"}
                 %i.icon-nav.icon-book>
                 =I18n.t("front_end.top_menu.news")
               %span
                 =I18n.t("front_end.top_menu.news_description")
-            %li.menu-item{id: ""}
+            %li.menu-item.contact
               %a{href: "/contact"}
                 %i.icon-nav.icon-envelope>
                 =I18n.t("front_end.top_menu.contact")

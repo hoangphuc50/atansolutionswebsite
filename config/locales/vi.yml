@@ -31,9 +31,9 @@ vi:
       our_project: "Dự án"
       our_project_description: "Khách hàng"
       news: "Tin tức"
-      news_description: "xem thông tin"
+      news_description: "Xem thông tin"
       contact: "Liên hệ"
-      contact_description: "với chúng tôi"
+      contact_description: "Với chúng tôi"
     index:
       recent_work: "Dự án gần đây"
       view_more: "Xem thêm"
@@ -41,7 +41,7 @@ vi:
       testimonials: "Nhận xét từ khách hàng"
     project:
       project: "Dự án"
-      project_description: "đã thực hiện"
+      project_description: "Đã thực hiện"
       project_all: "Tất cả"
     news:
       news: "Tin tức"

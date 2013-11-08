@@ -2825,6 +2825,7 @@ form{
 .blog-widget-carousel .carousel-li .blog-widget-description{
     padding-left: 108px;
     display: block;
+    height: 90px;
 }
 
 .blog-widget-carousel .carousel-li .blog-widget-description .meta{

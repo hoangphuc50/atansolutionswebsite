@@ -27,11 +27,19 @@
             = link_to(I18n.t("front_end.project.project_all"),projects_path)
             \/
           - @child_projects_category.each do |row|
-            %li
-              = link_to(row.title,projects_path(:id=>row.category_id))
-              -#%a.graphic-design{href: "projects/#{row.id}"}>
-                =row.title
-              \/
+            -if params[:id]==row.category_id
+              %li.active
+                = link_to(row.title,projects_path(:id=>row.category_id))
+                -#%a.graphic-design{href: "projects/#{row.id}"}>
+                  =row.title
+                \/
+            -else
+              %li
+                = link_to(row.title,projects_path(:id=>row.category_id))
+                -#%a.graphic-design{href: "projects/#{row.id}"}>
+                  =row.title
+                \/
+
         / portfolio quicksand filter end
     / container_12 start
     .container_12

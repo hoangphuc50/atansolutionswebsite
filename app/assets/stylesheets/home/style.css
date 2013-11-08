@@ -1319,7 +1319,7 @@ a.active .icon-nav{
     width: 292px;
     margin: 0 auto;
     height: 35px;
-    background: url('../images/about/shadow.png') no-repeat;
+    background: url('/assets/about/shadow.png') no-repeat;
     position: relative;
     top: -10px;
 }

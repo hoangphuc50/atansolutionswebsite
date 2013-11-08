@@ -1,4 +1,14 @@
+
 development:
+  adapter: postgresql
+  database: atan
+  pool: 10
+  timeout: 5000
+  username: postgres
+  host: localhost
+  password: root
+
+production:
   adapter: postgresql
   database: atan
   pool: 10

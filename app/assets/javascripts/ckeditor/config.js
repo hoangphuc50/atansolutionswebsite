@@ -5,4 +5,7 @@
 
 CKEDITOR.editorConfig = function( config ) {
     config.allowedContent = true;
+    config.protectedSource.push( /<a[\s\S]*?\/a>/g );
+    config.protectedSource.push( /<article[\s\S]*?\>/g ); //allows beginning <i> tag
+    config.protectedSource.push( /<\/article[\s\S]*?\>/g ); //allows ending </i> tag
 };

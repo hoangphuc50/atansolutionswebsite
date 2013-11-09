@@ -1797,7 +1797,7 @@ span.label{
     margin: 0 auto;
     position: absolute;
     visibility: visible;
-    background: url('../images/404-shadow.png') no-repeat;
+    background: url('/assets/404-shadow.png') no-repeat;
     bottom: -40px;
     left: -32px;
     width: 614px;

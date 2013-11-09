@@ -18,7 +18,7 @@
       %section.grid_12.section-title
         %h3
           -if @project_category_title.nil?
-            All projects
+            =I18n.t("front_end.project.all_projects")
           -else
             =@project_category_title.title
         / portfolio quicksand filter start

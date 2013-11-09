@@ -43,6 +43,9 @@ en:
       project: "Projects"
       project_description: "Our amazing work"
       project_all: "All"
+      recent_work: "Recent Work"
+      view_more: "View more"
+      all_projects: "All projects"
     news:
       news: "News"
       news_description: "See the Latest News from Our Company"
@@ -54,6 +57,13 @@ en:
       contact_description: "The Very Best Way To Get in Touch With Us"
       contact_message: "Leave us a message"
       send_message: "Send messages"
+    about_us:
+      about_us: "About Us"
+      about_us_description: "We love What We Do"
+    services:
+      services: "Services"
+      services_descriptions: "Here Is What We Do And How We Do It"
+      services_overview: "Services overview"
     footer:
       copyright: "Copyright 2013 ATAN Solutions"
       social: "Follow us on Social Network"

@@ -10,8 +10,10 @@
       %article.grid_12.portfolio-box{style: "margin-bottom: 0px;"}
         %section.divider-with-title.clearfix
           .title
-            %h4 Recent Work
-          %a.title-link{href: "/projects"} View more
+            %h4
+              =I18n.t("front_end.project.recent_work")
+          %a.title-link{href: "/projects"}
+            =I18n.t("front_end.project.view_more")
         -i=0
         - @project_same_category.each do |row|
         -i=i+1

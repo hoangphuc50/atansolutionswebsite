@@ -43,6 +43,9 @@ vi:
       project: "Dự án"
       project_description: "Đã thực hiện"
       project_all: "Tất cả"
+      recent_work: "Dự án gần đây"
+      view_more: "Xem tất cả"
+      all_projects: "Tất cả dự án"
     news:
       news: "Tin tức"
       news_description: "Xem thông tin mới nhất của công ty"
@@ -54,6 +57,13 @@ vi:
       contact_description: "liên hệ nhanh với công ty"
       contact_message: "Nhập nôi dung tin nhắn"
       send_message: "Gửi thông tin"
+    about_us:
+      about_us: "Thông tin công ty"
+      about_us_description: "Chúng tôi yêu thích công việc mình đang làm"
+    services:
+      services: "Dịch vụ"
+      services_descriptions: "Chúng tôi có gì, làm gì."
+      services_overview: "Giới thiệu sơ lược"
     footer:
       copyright: "Bản quyền thuộc về ATAN Solutions 2013"
       social: "Theo dõi chúng tôi trên mạng xã hội"

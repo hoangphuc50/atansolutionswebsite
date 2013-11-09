@@ -1,8 +1,9 @@
 %section.page-title
   .title.pattern-default
-    %h1 Services
+    %h1
+      =I18n.t("front_end.services.services")
     %span.subtitle
-      Here Is What We Do And How We Do It
+      =I18n.t("front_end.services.services_descriptions")
 / page-title end
 #content-container
   .content-wrapper.clearfix.multiple
@@ -10,7 +11,8 @@
       .grid_12
         = raw @about_my_services
         .clear
-        %h4 Services overview
+        %h4
+          =I18n.t("front_end.services.services_overview")
         - @all_services.each do |service|
           .grid_4.service.omega
             .icon-container
